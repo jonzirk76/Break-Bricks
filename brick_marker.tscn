@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://3whjj11f4c4v"]
+
+[node name="BrickMarker" type="Marker2D"]
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+color = Color(0.137255, 0.137255, 0.137255, 0)
+polygon = PackedVector2Array(0, 0, 96, 0, 96, 32, 0, 32)
