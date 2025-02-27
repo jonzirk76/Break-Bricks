@@ -3,26 +3,31 @@ extends Node
 @export var ball_scene : PackedScene
 @export var brick_scene : PackedScene
 
-var balls_to_win := 0
-var balls_in_win_area := 0
+var balls_alive : = 0
 var bricks_alive := 0
 var game_started := false
 
 @onready var score = 0
 @onready var balls = $Balls
 @onready var bricks = $Bricks
+@onready var all_kill_zones = $KillZones
+@onready var paddle_start_position = $MovingWall.position
 
 func _ready() -> void:
 	hide_walls()
 
 func _process(delta: float) -> void:
-	if balls_in_win_area == balls_to_win and game_started:
+	count_balls()
+	if balls_alive == 0 and game_started:
 		lose()
 	elif bricks_alive == 0 and game_started:
 		win()
 
-func _on_kill_area_body_entered(body: Node2D) -> void:
-	balls_in_win_area += 1
+func _physics_process(delta: float) -> void:
+		for child in get_children():
+			for kill_zone in all_kill_zones.get_children():
+				if child is Ball and kill_zone.overlaps_body(child):
+					child.kill_ball()
 
 func new_game():
 	score = 0
@@ -56,11 +61,11 @@ func add_point():
 func make_balls():
 	for child in balls.get_children():
 		if child is Marker2D:
-			balls_to_win += 1
 			var ball = ball_scene.instantiate()
 			ball.position = child.position
 			ball.process_mode = Node.PROCESS_MODE_INHERIT
 			add_child(ball)
+			balls_alive += 1
 			
 func make_bricks():
 	for child in bricks.get_children():
@@ -68,6 +73,7 @@ func make_bricks():
 			bricks_alive += 1
 			var brick = brick_scene.instantiate()
 			brick.position = child.position
+			brick.modulate = Color(randf_range(0,1),randf_range(0,1),randf_range(0,1),1)
 			brick.process_mode = Node.PROCESS_MODE_INHERIT
 			brick.tree_exited.connect(add_point)
 			add_child(brick)
@@ -89,4 +95,12 @@ func reset():
 	get_tree().call_group("ball", "queue_free")
 	get_tree().call_group("brick", "queue_free")
 	$MovingWall.process_mode = Node.PROCESS_MODE_DISABLED
+	$MovingWall.position = paddle_start_position
 	game_started = false
+	
+func count_balls():
+	var ball_count = 0
+	for child in get_children():
+		if child is Ball:
+			ball_count += 1
+		balls_alive = ball_count

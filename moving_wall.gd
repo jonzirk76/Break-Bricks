@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-@export var speed := 10
-@onready var paddle_line = position.y
+class_name Paddle
 
+@export var speed := 10
+
+@onready var paddle_line = position.y
 @onready var target = position
 
 func _input(event):
