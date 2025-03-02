@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpmk1aisafyh6"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_id2kc"]
-[ext_resource type="FontFile" uid="uid://dhyxl5k67jfqi" path="res://fonts/Xolonium-Regular.ttf" id="2_62urw"]
+[ext_resource type="Script" path="res://HUD/hud.gd" id="1_id2kc"]
+[ext_resource type="FontFile" uid="uid://dhyxl5k67jfqi" path="res://Fonts/Xolonium-Regular.ttf" id="2_62urw"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_id2kc")

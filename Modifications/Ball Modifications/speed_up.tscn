@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dohecglsfavoo"]
+
+[ext_resource type="Script" path="res://Modifications/Ball Modifications/speed_up.gd" id="1_5dsk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0opjg"]
+size = Vector2(32, 32)
+
+[node name="SpeedUp" type="Area2D" groups=["mods"]]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_5dsk5")
+mods = {
+"speed": 10
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.57628e-07, 0)
+shape = SubResource("RectangleShape2D_0opjg")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.0258333, 0.31, 0, 1)
+polygon = PackedVector2Array(-16, 0, 0, -16, 16, 0, 8, 0, 8, 16, -8, 16, -8, 0)
