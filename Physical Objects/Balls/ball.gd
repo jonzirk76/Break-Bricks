@@ -30,10 +30,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		initial_ball_behavior(paddle_position)
 		
-	var contact = $CollectionArea.get_overlapping_areas()
-	for body in contact:
-		if body is Mod:
-			mod_change(body.mods)
+	#var contact = $CollectionArea.get_overlapping_areas()
+	#for body in contact:
+		#if body is Mod:
+			#mod_change(body.mods)
 
 func _input(event):
 	# Use is_action_pressed to only accept single taps as input instead of mouse drags.

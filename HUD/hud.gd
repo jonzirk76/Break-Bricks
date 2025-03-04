@@ -36,11 +36,15 @@ func _on_main_game_win() -> void:
 	show_message("You win, genius!")
 	game_reset()
 
-func _on_main_add_point() -> void:
-	score += 1
-	$ScoreLabel.text = str(score)
-
 func _on_main_intro_start() -> void:
 	$ScoreLabel.show()
 	score = 0
 	show_message("Get Ready")
+
+func _on_bricks_brick_broken(position, brick_points) -> void:
+	score += brick_points
+	$ScoreLabel.text = str(score)
+
+func _on_loot_loot_area_entered(item_stats: Variant) -> void:
+	score += item_stats["loot_points"]
+	$ScoreLabel.text = str(score)

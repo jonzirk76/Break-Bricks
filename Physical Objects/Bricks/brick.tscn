@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bal10sqwhvuwn"]
+[gd_scene load_steps=5 format=3 uid="uid://bal10sqwhvuwn"]
 
 [ext_resource type="Script" path="res://Physical Objects/Bricks/brick.gd" id="1_78lti"]
 [ext_resource type="Script" path="res://Modifications/inventory.gd" id="2_3dkq0"]
-[ext_resource type="PackedScene" uid="uid://dohecglsfavoo" path="res://Modifications/Ball Modifications/speed_up.tscn" id="2_45uho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcmib"]
 size = Vector2(48, 16)
@@ -31,6 +30,5 @@ polygon = PackedVector2Array(-24, -8, 0, -8, 0, -4.15892, 0, 0, -24, 0)
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_3dkq0")
-inventory_1 = ExtResource("2_45uho")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

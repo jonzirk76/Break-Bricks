@@ -52,9 +52,9 @@ func reset():
 	reset_game.emit()
 	game_started = false
 
-func _on_bricks_brick_broken(brick_inventory,position) -> void:
-	if game_started == true:
-		add_point.emit()
+#func _on_bricks_brick_broken(brick_inventory,brick_points,position) -> void:
+	#if game_started == true:
+		#add_point.emit(brick_inventory,brick_points,position)
 
 func _on_balls_ball_count(balls_alive: Variant) -> void:
 	if balls_alive <= 0 and game_started:

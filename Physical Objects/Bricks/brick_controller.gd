@@ -24,8 +24,8 @@ func make_bricks():
 			add_child(brick)
 			child.process_mode = Node.PROCESS_MODE_DISABLED
 
-func brick_break(brick_inventory,position):
-	brick_broken.emit(brick_inventory,position)
+func brick_break(position, brick_points):
+	brick_broken.emit(position, brick_points)
 
 func _on_main_reset_game() -> void:
 	get_tree().call_group("brick", "queue_free")

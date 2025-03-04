@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bq8265toxmcqh" path="res://Physical Objects/Balls/ball.tscn" id="2_xotb5"]
 [ext_resource type="PackedScene" uid="uid://cw52elds5h8mr" path="res://Physical Objects/Paddles/paddle.tscn" id="3_vgts4"]
 [ext_resource type="Texture2D" uid="uid://7rypu7brpq7p" path="res://Assets/Screenshot 2025-02-27 at 06-06-37 Sousou no Frieren Anime Characters Wallpaper 4K HD PC #6031n.png" id="4_5t7u7"]
-[ext_resource type="Script" path="res://Physical Objects/Kill Zones/kill_zones.gd" id="5_d766w"]
+[ext_resource type="Script" path="res://Physical Objects/Kill Zones/kill_zone_controller.gd" id="5_d766w"]
 [ext_resource type="PackedScene" uid="uid://bpmk1aisafyh6" path="res://HUD/hud.tscn" id="5_y4mhn"]
-[ext_resource type="Script" path="res://Physical Objects/Balls/balls.gd" id="6_08rsg"]
+[ext_resource type="Script" path="res://Physical Objects/Balls/ball_controller.gd" id="6_08rsg"]
 [ext_resource type="PackedScene" uid="uid://3whjj11f4c4v" path="res://Physical Objects/Bricks/brick_marker.tscn" id="6_48tf4"]
 [ext_resource type="PackedScene" uid="uid://bal10sqwhvuwn" path="res://Physical Objects/Bricks/brick.tscn" id="6_o8ws1"]
-[ext_resource type="Script" path="res://Physical Objects/Bricks/bricks.gd" id="8_hqcrn"]
-[ext_resource type="Script" path="res://Modifications/mods.gd" id="11_0qyvt"]
+[ext_resource type="Script" path="res://Physical Objects/Bricks/brick_controller.gd" id="8_hqcrn"]
+[ext_resource type="Script" path="res://Modifications/mod_controller.gd" id="11_0qyvt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m740m"]
 size = Vector2(720, 178)
@@ -1141,7 +1141,7 @@ position = Vector2(26, 714)
 [node name="BrickMarker360" parent="Bricks" instance=ExtResource("6_48tf4")]
 position = Vector2(26, 730)
 
-[node name="Mods" type="Node" parent="."]
+[node name="Loot" type="Node" parent="."]
 script = ExtResource("11_0qyvt")
 
 [node name="HUD" parent="." instance=ExtResource("5_y4mhn")]
@@ -1156,12 +1156,15 @@ script = ExtResource("11_0qyvt")
 [connection signal="reset_game" from="." to="Paddle" method="_on_main_reset_game"]
 [connection signal="reset_game" from="." to="Balls" method="_on_main_reset_game"]
 [connection signal="reset_game" from="." to="Bricks" method="_on_main_reset_game"]
-[connection signal="reset_game" from="." to="Mods" method="_on_main_reset_game"]
+[connection signal="reset_game" from="." to="Loot" method="_on_main_reset_game"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="paddle_position" from="Paddle" to="Balls" method="_on_paddle_paddle_position"]
 [connection signal="kill_area_entered" from="KillZones" to="Balls" method="_on_kill_zones_kill_area_entered"]
 [connection signal="ball_count" from="Balls" to="." method="_on_balls_ball_count"]
 [connection signal="brick_broken" from="Bricks" to="." method="_on_bricks_brick_broken"]
-[connection signal="brick_broken" from="Bricks" to="Mods" method="_on_bricks_brick_broken"]
+[connection signal="brick_broken" from="Bricks" to="Loot" method="_on_bricks_brick_broken"]
+[connection signal="brick_broken" from="Bricks" to="HUD" method="_on_bricks_brick_broken"]
 [connection signal="brick_count" from="Bricks" to="." method="_on_bricks_brick_count"]
+[connection signal="loot_area_entered" from="Loot" to="Balls" method="_on_loot_loot_area_entered"]
+[connection signal="loot_area_entered" from="Loot" to="HUD" method="_on_loot_loot_area_entered"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

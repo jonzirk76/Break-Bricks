@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dohecglsfavoo"]
+
+[ext_resource type="Script" path="res://Modifications/Ball Modifications/Speed Up/speed_up.gd" id="1_5dsk5"]
+[ext_resource type="Script" path="res://Modifications/Mod Stats/mod_sheet.gd" id="2_s37qi"]
+[ext_resource type="Script" path="res://Modifications/Base Mod/mod_container.gd" id="3_u3abd"]
+[ext_resource type="Script" path="res://Modifications/Base Mod/speed.gd" id="4_v0fsv"]
+
+[sub_resource type="Resource" id="Resource_abo6f"]
+resource_local_to_scene = true
+script = ExtResource("2_s37qi")
+item_stats = {
+"loot_points": 0,
+"speed_mod": 20
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0opjg"]
+size = Vector2(32, 32)
+
+[node name="SpeedUp" type="Area2D" groups=["pickup"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_5dsk5")
+stats = SubResource("Resource_abo6f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.57628e-07, 0)
+shape = SubResource("RectangleShape2D_0opjg")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.0258333, 0.31, 0, 1)
+polygon = PackedVector2Array(-16, 0, 0, -16, 16, 0, 8, 0, 8, 16, -8, 16, -8, 0)
+
+[node name="ModContainer" type="Node" parent="."]
+script = ExtResource("3_u3abd")
+
+[node name="SpeedMod" type="Node" parent="ModContainer"]
+script = ExtResource("4_v0fsv")
