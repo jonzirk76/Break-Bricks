@@ -8,7 +8,7 @@ position = Vector2(-32, -32)
 polygon = PackedVector2Array(0, 1312, 32, 1312, 32, 32, 752, 32, 752, 1312, 784, 1312, 784, 0, 0, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(-32, -32)
+position = Vector2(-32, -48)
 scale = Vector2(1, 1.39024)
 color = Color(0.433442, 9.98713e-07, 1.92523e-07, 1)
-polygon = PackedVector2Array(32, 1312, 0, 1312, 0, 0, 784, 0, 784, 1312, 752, 1312, 752, 32, 32, 32)
+polygon = PackedVector2Array(32, 1312, 0, 1312, 0, 0, 784, 0, 784, 1312, 752, 1312, 752, 34.5264, 32, 34.5264)

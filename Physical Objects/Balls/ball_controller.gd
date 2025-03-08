@@ -7,8 +7,7 @@ signal ball_count(balls_alive)
 @onready var balls_alive
 
 func _process(delta: float) -> void:
-	count_balls()
-	ball_count.emit(balls_alive)
+	pass
 	
 func _physics_process(delta: float) -> void:
 	pass
@@ -20,8 +19,10 @@ func make_balls():
 			ball.position = child.position
 			ball.process_mode = Node.PROCESS_MODE_INHERIT
 			ball.ball_launched = false
+			ball.tree_exited.connect(count_balls)
 			add_child(ball)
 			child.process_mode = Node.PROCESS_MODE_DISABLED
+			count_balls()
 
 func _on_main_game_start() -> void:
 	make_balls()
@@ -37,7 +38,10 @@ func count_balls():
 	for child in get_children():
 		if child is Ball:
 			initial_ball_count += 1
+		else:
+			initial_ball_count = initial_ball_count
 	balls_alive = initial_ball_count
+	ball_count.emit(balls_alive)
 
 func _on_kill_zones_kill_area_entered(overlapping_bodies: Variant) -> void:
 	for child in get_children():

@@ -1,15 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqokprmuwyo72"]
+[gd_scene load_steps=4 format=3 uid="uid://dqokprmuwyo72"]
 
-[ext_resource type="Script" path="res://Modifications/Base Mod/base_mod.gd" id="1_8t0ut"]
-[ext_resource type="Script" path="res://Modifications/Mod Stats/mod_sheet.gd" id="2_fo4f0"]
-
-[sub_resource type="Resource" id="Resource_j26fb"]
-resource_local_to_scene = true
-script = ExtResource("2_fo4f0")
-item_stats = {
-"loot_points": 10,
-"speed_mod": 20
-}
+[ext_resource type="Script" path="res://Modifications/Mod Stats/mod_class.gd" id="1_18ros"]
+[ext_resource type="Resource" uid="uid://clluuedjl8com" path="res://Modifications/Ball Modifications/Coin/testresource.tres" id="2_xftql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6kqne"]
 size = Vector2(32, 32)
@@ -17,11 +9,13 @@ size = Vector2(32, 32)
 [node name="BaseMod" type="Area2D" groups=["pickup"]]
 collision_layer = 32
 collision_mask = 0
-script = ExtResource("1_8t0ut")
-stats = SubResource("Resource_j26fb")
+script = ExtResource("1_18ros")
+stats = ExtResource("2_xftql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6kqne")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 antialiased = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

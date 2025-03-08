@@ -7,8 +7,12 @@ signal pickup_collected(item_stats)
 @export var stats : mod_sheet
 
 @onready var item_stats = stats.item_stats
+@onready var sprite : Sprite2D = $Sprite2D
+#@onready var animation := stats.animation
 
 func _ready() -> void:
+	sprite.texture = stats.texture
+	#animation.play
 	var spawn_timer = Timer.new()
 	spawn_timer.wait_time = 2
 	spawn_timer.autostart = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bal10sqwhvuwn"]
 
-[ext_resource type="Script" path="res://Physical Objects/Bricks/brick.gd" id="1_78lti"]
-[ext_resource type="Script" path="res://Modifications/inventory.gd" id="2_3dkq0"]
+[ext_resource type="Script" uid="uid://bfes4bjelqet5" path="res://Physical Objects/Bricks/brick.gd" id="1_78lti"]
+[ext_resource type="Script" uid="uid://b1sloclj0gg33" path="res://Modifications/inventory.gd" id="2_3dkq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcmib"]
 size = Vector2(48, 16)

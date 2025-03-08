@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bq8265toxmcqh"]
 
-[ext_resource type="Script" path="res://Physical Objects/Balls/ball.gd" id="1_vk16r"]
+[ext_resource type="Script" uid="uid://3hen4fxonqr2" path="res://Physical Objects/Balls/ball.gd" id="1_vk16r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqugt"]
 size = Vector2(16, 16)

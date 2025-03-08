@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="mod_sheet" load_steps=4 format=3 uid="uid://bq5x4ege16qal"]
+
+[ext_resource type="Script" uid="uid://b80ivu080hk5a" path="res://Modifications/Mod Stats/mod_sheet.gd" id="1_obfxb"]
+[ext_resource type="Texture2D" uid="uid://4mdodec6c8kn" path="res://Assets/animated_items_outline.png" id="2_2jx6g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmi8r"]
+atlas = ExtResource("2_2jx6g")
+region = Rect2(6, 198, 20, 20)
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_obfxb")
+item_stats = {
+"loot_points": 20,
+"rarity": 2,
+"speed_mod": 0
+}
+texture = SubResource("AtlasTexture_nmi8r")
+metadata/_custom_type_script = "uid://b80ivu080hk5a"

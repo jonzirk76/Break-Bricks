@@ -6,8 +6,10 @@ signal game_start
 signal game_lost
 signal game_win
 signal add_point
+signal control_state(main_control_state)
 
 var game_started := false
+var main_control_state : String
 
 @onready var score = 0
 @onready var balls = $Balls
@@ -30,6 +32,7 @@ func new_game():
 	game_start.emit()
 	show_walls()
 	game_started = true
+	control_state.emit(main_control_state)
 	
 func lose():
 	game_lost.emit()
@@ -63,3 +66,6 @@ func _on_balls_ball_count(balls_alive: Variant) -> void:
 func _on_bricks_brick_count(bricks_alive: Variant) -> void:
 	if bricks_alive <= 0 and game_started:
 		win()
+
+func _on_hud_control_state(control_switch_state: Variant) -> void:
+	main_control_state = control_switch_state

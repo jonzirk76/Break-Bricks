@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="mod_sheet" load_steps=5 format=3 uid="uid://ba10lyeqj6bxg"]
+
+[ext_resource type="Animation" uid="uid://ct5umrlcyrghh" path="res://Modifications/Items/coin_default.res" id="1_7p5e1"]
+[ext_resource type="Script" uid="uid://b80ivu080hk5a" path="res://Modifications/Mod Stats/mod_sheet.gd" id="1_b1ia7"]
+[ext_resource type="Texture2D" uid="uid://4mdodec6c8kn" path="res://Assets/animated_items_outline.png" id="2_7p5e1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejdox"]
+resource_local_to_scene = true
+atlas = ExtResource("2_7p5e1")
+region = Rect2(5, 5, 22, 22)
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_b1ia7")
+item_stats = {
+"loot_points": 10,
+"rarity": 1,
+"speed_mod": 20
+}
+texture = SubResource("AtlasTexture_ejdox")
+animation = ExtResource("1_7p5e1")
+metadata/_custom_type_script = "uid://b80ivu080hk5a"

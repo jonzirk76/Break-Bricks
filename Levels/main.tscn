@@ -1,17 +1,17 @@
 [gd_scene load_steps=14 format=3 uid="uid://bbwenmdqnatkb"]
 
-[ext_resource type="Script" path="res://Levels/main.gd" id="1_1ce2o"]
+[ext_resource type="Script" uid="uid://dv4bxtgjv0ecc" path="res://Levels/main.gd" id="1_1ce2o"]
 [ext_resource type="PackedScene" uid="uid://btv7jq1mwn3vw" path="res://Physical Objects/Walls/wall.tscn" id="1_mktae"]
 [ext_resource type="PackedScene" uid="uid://bq8265toxmcqh" path="res://Physical Objects/Balls/ball.tscn" id="2_xotb5"]
 [ext_resource type="PackedScene" uid="uid://cw52elds5h8mr" path="res://Physical Objects/Paddles/paddle.tscn" id="3_vgts4"]
 [ext_resource type="Texture2D" uid="uid://7rypu7brpq7p" path="res://Assets/Screenshot 2025-02-27 at 06-06-37 Sousou no Frieren Anime Characters Wallpaper 4K HD PC #6031n.png" id="4_5t7u7"]
-[ext_resource type="Script" path="res://Physical Objects/Kill Zones/kill_zone_controller.gd" id="5_d766w"]
+[ext_resource type="Script" uid="uid://dheb1wemo2es6" path="res://Physical Objects/Kill Zones/kill_zone_controller.gd" id="5_d766w"]
 [ext_resource type="PackedScene" uid="uid://bpmk1aisafyh6" path="res://HUD/hud.tscn" id="5_y4mhn"]
-[ext_resource type="Script" path="res://Physical Objects/Balls/ball_controller.gd" id="6_08rsg"]
+[ext_resource type="Script" uid="uid://cml6lxpmos57v" path="res://Physical Objects/Balls/ball_controller.gd" id="6_08rsg"]
 [ext_resource type="PackedScene" uid="uid://3whjj11f4c4v" path="res://Physical Objects/Bricks/brick_marker.tscn" id="6_48tf4"]
 [ext_resource type="PackedScene" uid="uid://bal10sqwhvuwn" path="res://Physical Objects/Bricks/brick.tscn" id="6_o8ws1"]
-[ext_resource type="Script" path="res://Physical Objects/Bricks/brick_controller.gd" id="8_hqcrn"]
-[ext_resource type="Script" path="res://Modifications/mod_controller.gd" id="11_0qyvt"]
+[ext_resource type="Script" uid="uid://dp6uvfvt1aokm" path="res://Physical Objects/Bricks/brick_controller.gd" id="8_hqcrn"]
+[ext_resource type="Script" uid="uid://dp8si1p2uu3l5" path="res://Modifications/mod_controller.gd" id="11_0qyvt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m740m"]
 size = Vector2(720, 178)
@@ -34,7 +34,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Wall" parent="." instance=ExtResource("1_mktae")]
-position = Vector2(0, -16)
 
 [node name="Paddle" parent="." instance=ExtResource("3_vgts4")]
 position = Vector2(352, 1248)
@@ -1147,6 +1146,7 @@ script = ExtResource("11_0qyvt")
 [node name="HUD" parent="." instance=ExtResource("5_y4mhn")]
 
 [connection signal="add_point" from="." to="HUD" method="_on_main_add_point"]
+[connection signal="control_state" from="." to="Paddle" method="_on_main_control_state"]
 [connection signal="game_lost" from="." to="HUD" method="_on_main_game_lost"]
 [connection signal="game_start" from="." to="Paddle" method="_on_main_game_start"]
 [connection signal="game_start" from="." to="Balls" method="_on_main_game_start"]
@@ -1167,4 +1167,5 @@ script = ExtResource("11_0qyvt")
 [connection signal="brick_count" from="Bricks" to="." method="_on_bricks_brick_count"]
 [connection signal="loot_area_entered" from="Loot" to="Balls" method="_on_loot_loot_area_entered"]
 [connection signal="loot_area_entered" from="Loot" to="HUD" method="_on_loot_loot_area_entered"]
+[connection signal="control_state" from="HUD" to="." method="_on_hud_control_state"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

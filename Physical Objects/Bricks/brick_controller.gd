@@ -10,8 +10,7 @@ var chance_to_drop = .2
 @onready var bricks_alive
 
 func _process(delta: float) -> void:
-	count_bricks()
-	brick_count.emit(bricks_alive)
+	pass
 
 func make_bricks():
 	for child in get_children():
@@ -21,8 +20,10 @@ func make_bricks():
 			brick.modulate = Color(randf_range(0,1),randf_range(0,1),randf_range(0,1),1)
 			brick.process_mode = Node.PROCESS_MODE_INHERIT
 			brick.brick_broken.connect(brick_break)
+			brick.tree_exited.connect(count_bricks)
 			add_child(brick)
 			child.process_mode = Node.PROCESS_MODE_DISABLED
+			count_bricks()
 
 func brick_break(position, brick_points):
 	brick_broken.emit(position, brick_points)
@@ -42,3 +43,4 @@ func count_bricks():
 		if child is Brick:
 			initial_brick_count += 1
 	bricks_alive = initial_brick_count
+	brick_count.emit(bricks_alive)
