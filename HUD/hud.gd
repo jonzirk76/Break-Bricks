@@ -62,7 +62,7 @@ func _on_bricks_brick_broken(position, brick_points) -> void:
 	score += brick_points
 	$ScoreLabel.text = str(score)
 
-func _on_loot_loot_area_entered(item_stats: Variant) -> void:
+func _on_loot_loot_area_entered(item_stats: Variant, body: Variant) -> void:
 	score += item_stats["loot_points"]
 	$ScoreLabel.text = str(score)
 

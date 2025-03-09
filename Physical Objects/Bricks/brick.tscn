@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bal10sqwhvuwn"]
+[gd_scene load_steps=13 format=3 uid="uid://bal10sqwhvuwn"]
 
 [ext_resource type="Script" uid="uid://bfes4bjelqet5" path="res://Physical Objects/Bricks/brick.gd" id="1_78lti"]
 [ext_resource type="Script" uid="uid://b1sloclj0gg33" path="res://Modifications/inventory.gd" id="2_3dkq0"]
 [ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="3_n5dcw"]
+[ext_resource type="AudioStream" uid="uid://bmnsgx13rgg1q" path="res://Assets/Sound/Bleep_03.ogg" id="4_cvhb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcmib"]
 size = Vector2(48, 16)
@@ -10,12 +11,155 @@ size = Vector2(48, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nyd5q"]
 size = Vector2(50, 18)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cvhb1"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvhb1"]
 atlas = ExtResource("3_n5dcw")
 region = Rect2(208, 129, 48, 16)
 
+[sub_resource type="Animation" id="Animation_cvhb1"]
+resource_name = "break"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 0.170755),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeathParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DeathParticles:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 512),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7o301"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeathParticles:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j7m0t"]
+_data = {
+&"RESET": SubResource("Animation_7o301"),
+&"break": SubResource("Animation_cvhb1")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7o301"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 647.51
+initial_velocity_max = 647.51
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 56.7
+linear_accel_max = 100.0
+radial_accel_min = 53.26
+radial_accel_max = 53.26
+turbulence_enabled = true
+
 [node name="Brick" type="StaticBody2D" groups=["brick"]]
-process_mode = 4
 script = ExtResource("1_78lti")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -33,6 +177,23 @@ script = ExtResource("2_3dkq0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = SubResource("CanvasItemMaterial_cvhb1")
 texture = SubResource("AtlasTexture_cvhb1")
 
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cvhb1")
+pitch_scale = 1.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j7m0t")
+}
+speed_scale = 2.0
+
+[node name="DeathParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100000
+process_material = SubResource("ParticleProcessMaterial_7o301")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

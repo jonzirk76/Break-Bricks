@@ -18,8 +18,8 @@ func _ready():
 
 func _input(event):
 	if control_state == "MOUSE MODE":
-		if event.is_action("click_to_move"):
-			target = get_global_mouse_position()
+		#if event.is_action("click_to_move"):
+		target = get_global_mouse_position()
 	elif control_state == "BUTTON MODE":
 		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = input_direction * speed

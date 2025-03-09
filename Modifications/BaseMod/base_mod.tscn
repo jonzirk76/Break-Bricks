@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dqokprmuwyo72"]
 
 [ext_resource type="Script" uid="uid://4nymhst1pq7x" path="res://Modifications/Mod Stats/mod_class.gd" id="1_xogmk"]
-[ext_resource type="Resource" uid="uid://dcvjt4kvhvc43" path="res://Modifications/Items/slow_down.tres" id="2_xogmk"]
+[ext_resource type="Resource" uid="uid://bq5x4ege16qal" path="res://Modifications/Items/blue_gem.tres" id="2_xogmk"]
 [ext_resource type="Texture2D" uid="uid://4mdodec6c8kn" path="res://Assets/animated_items_outline.png" id="3_aocav"]
 [ext_resource type="PackedScene" uid="uid://d1adaaek2cy3g" path="res://Modifications/Items/default_animation.tscn" id="4_xogmk"]
 

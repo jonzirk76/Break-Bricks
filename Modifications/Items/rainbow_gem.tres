@@ -8,6 +8,7 @@ atlas = ExtResource("2_oa32i")
 region = Rect2(7, 167, 18, 18)
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_28nua")
 item_stats = {
 "loot_points": 50,
