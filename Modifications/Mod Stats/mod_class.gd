@@ -24,5 +24,5 @@ func _physics_process(delta: float) -> void:
 	var contact = get_overlapping_bodies()
 	for body in contact:
 		if body is Ball:
-			pickup_collected.emit(item_stats)
+			pickup_collected.emit(item_stats, body)
 			queue_free()

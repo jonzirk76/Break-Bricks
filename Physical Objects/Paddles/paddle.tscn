@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw52elds5h8mr"]
+[gd_scene load_steps=5 format=3 uid="uid://cw52elds5h8mr"]
 
 [ext_resource type="Script" uid="uid://cpcg78gpxheue" path="res://Physical Objects/Paddles/paddle.gd" id="1_f0sgn"]
+[ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="2_hvkuo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol4q3"]
 size = Vector2(128, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xlin"]
+atlas = ExtResource("2_hvkuo")
+region = Rect2(208, 112, 128, 16)
 
 [node name="Paddle" type="CharacterBody2D" groups=["paddle"]]
 process_mode = 4
@@ -17,7 +22,6 @@ script = ExtResource("1_f0sgn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ol4q3")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-scale = Vector2(1, 0.5)
-antialiased = true
-polygon = PackedVector2Array(-64, -16, 64, -16, 64, 16, -64, 16)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_6xlin")

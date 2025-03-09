@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bal10sqwhvuwn"]
+[gd_scene load_steps=7 format=3 uid="uid://bal10sqwhvuwn"]
 
 [ext_resource type="Script" uid="uid://bfes4bjelqet5" path="res://Physical Objects/Bricks/brick.gd" id="1_78lti"]
 [ext_resource type="Script" uid="uid://b1sloclj0gg33" path="res://Modifications/inventory.gd" id="2_3dkq0"]
+[ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="3_n5dcw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcmib"]
 size = Vector2(48, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nyd5q"]
 size = Vector2(50, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvhb1"]
+atlas = ExtResource("3_n5dcw")
+region = Rect2(208, 129, 48, 16)
 
 [node name="Brick" type="StaticBody2D" groups=["brick"]]
 process_mode = 4
@@ -23,12 +28,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["brick"]]
 shape = SubResource("RectangleShape2D_nyd5q")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(24, 8)
-scale = Vector2(2, 2)
-polygon = PackedVector2Array(-24, -8, 0, -8, 0, -4.15892, 0, 0, -24, 0)
-
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_3dkq0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_cvhb1")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

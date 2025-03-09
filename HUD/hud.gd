@@ -20,27 +20,27 @@ func show_message(text):
 	$MessageTimer.start()
 
 func _on_start_button_pressed() -> void:
-	$StartButton.hide()
-	$ControlSwitch.hide()
-	$GamepadControls.hide()
+	get_tree().call_group("title_ui", "hide")
 	start_game.emit()
 	control_state.emit(control_switch_state)
 	start_menu_active = false
+	$ControlSwitch.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_message_timer_timeout() -> void:
 	$Message.hide()
+	$TitleBackground.hide()
 	
 func game_reset():
 	await $MessageTimer.timeout
 	
 	$Message.text = "BREAK BRICKS"
 	$Message.show()
+	$TitleBackground.show()
 	
 	await get_tree().create_timer(1.0).timeout
-	$StartButton.show()
-	$ControlSwitch.show()
-	$GamepadControls.show()
+	get_tree().call_group("title_ui", "show")
 	start_menu_active = true
+	$ControlSwitch.process_mode = Node.PROCESS_MODE_INHERIT
 
 #func _on_main_game_start() -> void:
 	#pass

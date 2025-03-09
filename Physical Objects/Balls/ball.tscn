@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq8265toxmcqh"]
+[gd_scene load_steps=6 format=3 uid="uid://bq8265toxmcqh"]
 
 [ext_resource type="Script" uid="uid://3hen4fxonqr2" path="res://Physical Objects/Balls/ball.gd" id="1_vk16r"]
+[ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="2_5fbou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqugt"]
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk0xf"]
 size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjgj5"]
+atlas = ExtResource("2_5fbou")
+region = Rect2(225, 96, 16, 16)
 
 [node name="Ball" type="RigidBody2D" groups=["ball"]]
 process_mode = 4
@@ -15,12 +20,6 @@ collision_mask = 5
 gravity_scale = 0.0
 linear_damp_mode = 1
 script = ExtResource("1_vk16r")
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(-8, 8)
-scale = Vector2(0.25, 0.25)
-antialiased = true
-polygon = PackedVector2Array(0, -24, 0, -40, 8, -56, 24, -64, 40, -64, 56, -56, 64, -40, 64, -24, 56, -8, 40, 0, 24, 0, 8, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_iqugt")
@@ -32,3 +31,7 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionArea"]
 position = Vector2(-1.19209e-07, 0)
 shape = SubResource("RectangleShape2D_nk0xf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_sjgj5")

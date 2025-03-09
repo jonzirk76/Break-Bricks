@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbwenmdqnatkb"]
+[gd_scene load_steps=17 format=3 uid="uid://bbwenmdqnatkb"]
 
 [ext_resource type="Script" uid="uid://dv4bxtgjv0ecc" path="res://Levels/main.gd" id="1_1ce2o"]
 [ext_resource type="PackedScene" uid="uid://btv7jq1mwn3vw" path="res://Physical Objects/Walls/wall.tscn" id="1_mktae"]
+[ext_resource type="Shader" uid="uid://bxa05wnlbl06a" path="res://Levels/main.gdshader" id="2_5mxy1"]
 [ext_resource type="PackedScene" uid="uid://bq8265toxmcqh" path="res://Physical Objects/Balls/ball.tscn" id="2_xotb5"]
+[ext_resource type="Texture2D" uid="uid://blrrygrywkak3" path="res://Assets/palette.png" id="3_3lhg3"]
 [ext_resource type="PackedScene" uid="uid://cw52elds5h8mr" path="res://Physical Objects/Paddles/paddle.tscn" id="3_vgts4"]
-[ext_resource type="Texture2D" uid="uid://7rypu7brpq7p" path="res://Assets/Screenshot 2025-02-27 at 06-06-37 Sousou no Frieren Anime Characters Wallpaper 4K HD PC #6031n.png" id="4_5t7u7"]
+[ext_resource type="Texture2D" uid="uid://dui0sj64jw8oo" path="res://Assets/Screenshot 2025-02-27 at 06-06-37 Sousou no Frieren Anime Characters Wallpaper 4K HD PC #6031n_GREY.png" id="4_3lhg3"]
 [ext_resource type="Script" uid="uid://dheb1wemo2es6" path="res://Physical Objects/Kill Zones/kill_zone_controller.gd" id="5_d766w"]
 [ext_resource type="PackedScene" uid="uid://bpmk1aisafyh6" path="res://HUD/hud.tscn" id="5_y4mhn"]
 [ext_resource type="Script" uid="uid://cml6lxpmos57v" path="res://Physical Objects/Balls/ball_controller.gd" id="6_08rsg"]
@@ -13,6 +15,33 @@
 [ext_resource type="Script" uid="uid://dp6uvfvt1aokm" path="res://Physical Objects/Bricks/brick_controller.gd" id="8_hqcrn"]
 [ext_resource type="Script" uid="uid://dp8si1p2uu3l5" path="res://Modifications/mod_controller.gd" id="11_0qyvt"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3lhg3"]
+shader = ExtResource("2_5mxy1")
+shader_parameter/snes_transparency = true
+shader_parameter/gba_transparency = true
+shader_parameter/horizontal_scan_line = false
+shader_parameter/vertical_scan_line = false
+shader_parameter/enable_palette_cycling = true
+shader_parameter/sprite_scroll_direction = Vector2(-1, -1)
+shader_parameter/sprite_scroll_speed = 0.01
+shader_parameter/gba_transparency_scroll_direction = Vector2(1, -1)
+shader_parameter/gba_transparency_scroll_speed = 0.01
+shader_parameter/gba_transparency_value = 0.5
+shader_parameter/horizontal_wave_amplitude = 0.01
+shader_parameter/horizontal_wave_frequency = 0.01
+shader_parameter/horizontal_wave_speed = 1.0
+shader_parameter/vertical_wave_amplitude = 0.01
+shader_parameter/vertical_wave_frequency = 0.01
+shader_parameter/vertical_wave_speed = 1.0
+shader_parameter/horizontal_deform_amplitude = 0.01
+shader_parameter/horizontal_deform_frequency = 0.01
+shader_parameter/horizontal_deform_speed = 1.0
+shader_parameter/vertical_deform_amplitude = 0.01
+shader_parameter/vertical_deform_frequency = 0.01
+shader_parameter/vertical_deform_speed = 1.0
+shader_parameter/palette_cycling_speed = 0.1
+shader_parameter/palette = ExtResource("3_3lhg3")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m740m"]
 size = Vector2(720, 178)
 
@@ -20,14 +49,17 @@ size = Vector2(720, 178)
 script = ExtResource("1_1ce2o")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.142858, 0.142858, 0.142858, 1)
+modulate = Color(0.0445579, 0.0445578, 0.0445578, 1)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_3lhg3")
 offset_left = 880.0
 offset_top = -320.0
 offset_right = 4720.0
 offset_bottom = 1760.0
 rotation = 1.57079
 scale = Vector2(0.525143, 0.525143)
-texture = ExtResource("4_5t7u7")
+texture = ExtResource("4_3lhg3")
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
