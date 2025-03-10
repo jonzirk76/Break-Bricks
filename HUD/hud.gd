@@ -56,6 +56,7 @@ func _on_main_game_win() -> void:
 func _on_main_intro_start() -> void:
 	$ScoreLabel.show()
 	score = 0
+	$ScoreLabel.text = str(score)
 	show_message("Get Ready")
 
 func _on_bricks_brick_broken(position, brick_points) -> void:

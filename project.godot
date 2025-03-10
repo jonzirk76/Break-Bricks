@@ -86,6 +86,11 @@ gamepad_toggle={
 2d_physics/layer_5="brick_marker"
 2d_physics/layer_6="pickup"
 
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
+
 [shader_globals]
 
 width={

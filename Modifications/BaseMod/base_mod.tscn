@@ -29,3 +29,4 @@ texture_filter = 1
 texture = SubResource("AtlasTexture_lwij1")
 
 [node name="AnimationPlayer" parent="." instance=ExtResource("4_xogmk")]
+autoplay = ""

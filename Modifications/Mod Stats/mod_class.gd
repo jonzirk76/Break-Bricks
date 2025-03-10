@@ -9,10 +9,11 @@ signal pickup_collected(item_stats)
 @onready var item_stats = stats.item_stats
 @onready var sprite : Sprite2D = $Sprite2D
 #@onready var animation := stats.animation
+@onready var animation := $AnimationPlayer
 
 func _ready() -> void:
 	sprite.texture = stats.texture
-	#animation.play
+	animation.play("default")
 	var spawn_timer = Timer.new()
 	spawn_timer.wait_time = 2
 	spawn_timer.autostart = true

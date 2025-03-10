@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="2_hvkuo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol4q3"]
-size = Vector2(128, 16)
+size = Vector2(128, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xlin"]
 atlas = ExtResource("2_hvkuo")
@@ -20,6 +20,7 @@ platform_floor_layers = 4294967040
 script = ExtResource("1_f0sgn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ol4q3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

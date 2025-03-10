@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bbwenmdqnatkb"]
+[gd_scene load_steps=24 format=3 uid="uid://bbwenmdqnatkb"]
 
 [ext_resource type="Script" uid="uid://dv4bxtgjv0ecc" path="res://Levels/main.gd" id="1_1ce2o"]
 [ext_resource type="PackedScene" uid="uid://btv7jq1mwn3vw" path="res://Physical Objects/Walls/wall.tscn" id="1_mktae"]
+[ext_resource type="Texture2D" uid="uid://b8plesryuq8fw" path="res://Assets/icon.svg" id="2_3lhg3"]
 [ext_resource type="Shader" uid="uid://bxa05wnlbl06a" path="res://Levels/main.gdshader" id="2_5mxy1"]
 [ext_resource type="PackedScene" uid="uid://bq8265toxmcqh" path="res://Physical Objects/Balls/ball.tscn" id="2_xotb5"]
 [ext_resource type="PackedScene" uid="uid://cw52elds5h8mr" path="res://Physical Objects/Paddles/paddle.tscn" id="3_vgts4"]
@@ -12,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://bal10sqwhvuwn" path="res://Physical Objects/Bricks/brick.tscn" id="6_o8ws1"]
 [ext_resource type="Script" uid="uid://dp6uvfvt1aokm" path="res://Physical Objects/Bricks/brick_controller.gd" id="8_hqcrn"]
 [ext_resource type="Script" uid="uid://dp8si1p2uu3l5" path="res://Modifications/mod_controller.gd" id="11_0qyvt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgfyn"]
 
 [sub_resource type="Gradient" id="Gradient_hilkn"]
 offsets = PackedFloat32Array(0.0983607, 0.180328, 0.245902, 0.289617, 0.387978, 0.486339)
@@ -80,6 +83,12 @@ size = Vector2(720, 178)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_1ce2o")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(360, 48)
+texture_normal = ExtResource("2_3lhg3")
+shape = SubResource("RectangleShape2D_wgfyn")
+action = "launch"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.0445579, 0.0445578, 0.0445578, 1)
