@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://3hen4fxonqr2" path="res://Physical Objects/Balls/ball.gd" id="1_vk16r"]
 [ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="2_5fbou"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqugt"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fbou"]
+radius = 8.55
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk0xf"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sjgj5"]
+radius = 8.55
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjgj5"]
 atlas = ExtResource("2_5fbou")
@@ -25,7 +25,8 @@ stats = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_iqugt")
+shape = SubResource("CircleShape2D_5fbou")
+one_way_collision_margin = 0.0
 
 [node name="CollectionArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -33,7 +34,7 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionArea"]
 position = Vector2(-1.19209e-07, 0)
-shape = SubResource("RectangleShape2D_nk0xf")
+shape = SubResource("CircleShape2D_sjgj5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
