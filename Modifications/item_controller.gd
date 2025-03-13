@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	pass
 
 func drop_mod(position, brick_points):
-	var drop_rng = randi_range(1,3)
+	var drop_rng = randi_range(1,1)
 	var stats
 	if drop_rng == 1:
 		var rarity_rng = randi_range(1,6)
@@ -57,6 +57,7 @@ func drop_mod(position, brick_points):
 					break
 	else:
 		stats = null
+		
 	if stats != null:
 		var item_instance = base_mod_scene.instantiate()
 		item_instance.stats = stats

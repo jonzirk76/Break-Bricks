@@ -2,7 +2,7 @@ extends StaticBody2D
 
 class_name Brick
 
-signal brick_broken(inventory, brick_points, position)
+signal brick_broken(brick_points, position)
 
 @onready var brick_points := 1
 

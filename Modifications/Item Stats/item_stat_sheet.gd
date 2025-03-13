@@ -1,6 +1,6 @@
 extends Resource
 
-class_name mod_sheet
+class_name item_stat_sheet
 
 @export var item_stats = {
 	"rarity": 1, # 1 is common, 2 is uncommon, 3 is rare

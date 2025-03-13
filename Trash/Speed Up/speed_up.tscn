@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dohecglsfavoo"]
 
-[ext_resource type="Script" uid="uid://b03wfqceuwq3u" path="res://Modifications/Ball Modifications/Speed Up/speed_up.gd" id="1_5dsk5"]
-[ext_resource type="Script" uid="uid://b80ivu080hk5a" path="res://Modifications/Mod Stats/mod_sheet.gd" id="2_s37qi"]
+[ext_resource type="Script" uid="uid://b03wfqceuwq3u" path="res://Trash/Speed Up/speed_up.gd" id="1_5dsk5"]
+[ext_resource type="Script" uid="uid://b80ivu080hk5a" path="res://Modifications/Item Stats/item_stat_sheet.gd" id="2_s37qi"]
 [ext_resource type="Script" uid="uid://dsnwn4ct7870f" path="res://Modifications/BaseMod/mod_container.gd" id="3_u3abd"]
-[ext_resource type="Script" uid="uid://coyf3wu1iq62g" path="res://Modifications/BaseMod/speed.gd" id="4_v0fsv"]
+[ext_resource type="Script" uid="uid://coyf3wu1iq62g" path="res://Trash/speed.gd" id="4_v0fsv"]
 
 [sub_resource type="Resource" id="Resource_abo6f"]
 resource_local_to_scene = true

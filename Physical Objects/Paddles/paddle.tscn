@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw52elds5h8mr"]
+[gd_scene load_steps=10 format=3 uid="uid://cw52elds5h8mr"]
 
 [ext_resource type="Script" uid="uid://cpcg78gpxheue" path="res://Physical Objects/Paddles/paddle.gd" id="1_f0sgn"]
 [ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="2_hvkuo"]
+[ext_resource type="AudioStream" uid="uid://bmioukbxcguwe" path="res://Assets/Sound/Click_03.ogg" id="3_6xlin"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol4q3"]
 size = Vector2(128, 32)
@@ -10,9 +11,74 @@ size = Vector2(128, 32)
 atlas = ExtResource("2_hvkuo")
 region = Rect2(208, 112, 128, 16)
 
+[sub_resource type="Animation" id="Animation_hvkuo"]
+resource_name = "bump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 0.248335, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.4),
+"transitions": PackedFloat32Array(1, 0.277392, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.154876, 0.154876, 0.154876, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6xlin"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vx3wj"]
+_data = {
+&"RESET": SubResource("Animation_6xlin"),
+&"bump": SubResource("Animation_hvkuo")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xlin"]
+size = Vector2(132, 20)
+
 [node name="Paddle" type="CharacterBody2D" groups=["paddle"]]
 process_mode = 4
 collision_layer = 4
+collision_mask = 3
 motion_mode = 1
 slide_on_ceiling = false
 platform_on_leave = 2
@@ -26,3 +92,20 @@ shape = SubResource("RectangleShape2D_ol4q3")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = SubResource("AtlasTexture_6xlin")
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6xlin")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vx3wj")
+}
+
+[node name="BallCollisionCheck" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallCollisionCheck"]
+shape = SubResource("RectangleShape2D_6xlin")
+
+[connection signal="body_entered" from="BallCollisionCheck" to="." method="_on_ball_collision_check_body_entered"]

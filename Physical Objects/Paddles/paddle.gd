@@ -53,3 +53,9 @@ func _on_main_reset_game() -> void:
 
 func _on_main_control_state(main_control_state: Variant) -> void:
 	control_state = main_control_state
+
+func _on_ball_collision_check_body_entered(body: Node2D) -> void:
+	if body is Ball:
+			$SoundEffect.pitch_scale = randf_range(.75, 1.25)
+			$SoundEffect.playing = true
+			$AnimationPlayer.play("bump")

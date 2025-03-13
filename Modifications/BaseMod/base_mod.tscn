@@ -1,9 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqokprmuwyo72"]
+[gd_scene load_steps=12 format=3 uid="uid://dqokprmuwyo72"]
 
-[ext_resource type="Script" uid="uid://4nymhst1pq7x" path="res://Modifications/Mod Stats/mod_class.gd" id="1_xogmk"]
-[ext_resource type="Resource" uid="uid://bq5x4ege16qal" path="res://Modifications/Items/blue_gem.tres" id="2_xogmk"]
+[ext_resource type="Script" uid="uid://4nymhst1pq7x" path="res://Modifications/Item Stats/item_class.gd" id="1_xogmk"]
+[ext_resource type="Script" uid="uid://b80ivu080hk5a" path="res://Modifications/Item Stats/item_stat_sheet.gd" id="2_2hrnr"]
 [ext_resource type="Texture2D" uid="uid://4mdodec6c8kn" path="res://Assets/animated_items_outline.png" id="3_aocav"]
-[ext_resource type="PackedScene" uid="uid://d1adaaek2cy3g" path="res://Modifications/Items/default_animation.tscn" id="4_xogmk"]
+[ext_resource type="Animation" uid="uid://ct5umrlcyrghh" path="res://Modifications/Items/coin_default.res" id="4_xogmk"]
+[ext_resource type="AudioStream" uid="uid://deg7ran7im158" path="res://Assets/Sound/Confirm_06.ogg" id="5_2hrnr"]
+
+[sub_resource type="Resource" id="Resource_aocav"]
+script = ExtResource("2_2hrnr")
+item_stats = {
+"loot_points": 10,
+"rarity": 1,
+"speed_mod": 20
+}
+metadata/_custom_type_script = "uid://b80ivu080hk5a"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6kqne"]
 size = Vector2(32, 32)
@@ -12,11 +22,110 @@ size = Vector2(32, 32)
 atlas = ExtResource("3_aocav")
 region = Rect2(5, 5, 22, 22)
 
+[sub_resource type="Animation" id="Animation_kp5dv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(5, 5, 22, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_xogmk"]
+resource_name = "break"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_knhog"]
+_data = {
+&"RESET": SubResource("Animation_kp5dv"),
+&"break": SubResource("Animation_xogmk"),
+&"default": ExtResource("4_xogmk")
+}
+
 [node name="BaseMod" type="Area2D" groups=["pickup"]]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_xogmk")
-stats = ExtResource("2_xogmk")
+stats = SubResource("Resource_aocav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6kqne")
@@ -26,7 +135,17 @@ antialiased = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1e-05, 1e-05)
 texture = SubResource("AtlasTexture_lwij1")
 
-[node name="AnimationPlayer" parent="." instance=ExtResource("4_xogmk")]
-autoplay = ""
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_knhog")
+}
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2hrnr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

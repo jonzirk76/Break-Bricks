@@ -27,6 +27,8 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(linear_velocity * delta)
 	if ball_launched == true:
 		ball_in_play(collision)
+		if linear_velocity.y == 0:
+			_random_velocity()
 	else:
 		initial_ball_behavior(paddle_position)
 		

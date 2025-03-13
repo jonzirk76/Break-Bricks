@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bq8265toxmcqh"]
+[gd_scene load_steps=7 format=3 uid="uid://bq8265toxmcqh"]
 
 [ext_resource type="Script" uid="uid://3hen4fxonqr2" path="res://Physical Objects/Balls/ball.gd" id="1_vk16r"]
 [ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="2_5fbou"]
+[ext_resource type="AudioStream" uid="uid://bmioukbxcguwe" path="res://Assets/Sound/Click_03.ogg" id="3_sjgj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqugt"]
 size = Vector2(16, 16)
@@ -38,3 +39,6 @@ shape = SubResource("RectangleShape2D_nk0xf")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = SubResource("AtlasTexture_sjgj5")
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sjgj5")

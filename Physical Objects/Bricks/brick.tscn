@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bal10sqwhvuwn"]
+[gd_scene load_steps=12 format=3 uid="uid://bal10sqwhvuwn"]
 
 [ext_resource type="Script" uid="uid://bfes4bjelqet5" path="res://Physical Objects/Bricks/brick.gd" id="1_78lti"]
-[ext_resource type="Script" uid="uid://b1sloclj0gg33" path="res://Modifications/inventory.gd" id="2_3dkq0"]
 [ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="3_n5dcw"]
-[ext_resource type="AudioStream" uid="uid://bmnsgx13rgg1q" path="res://Assets/Sound/Bleep_03.ogg" id="4_cvhb1"]
+[ext_resource type="AudioStream" uid="uid://d4hwod8lb1ah4" path="res://Assets/Sound/Click_02.ogg" id="4_cvhb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcmib"]
 size = Vector2(48, 16)
@@ -171,9 +170,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["brick"]]
 shape = SubResource("RectangleShape2D_nyd5q")
-
-[node name="Inventory" type="Node" parent="."]
-script = ExtResource("2_3dkq0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

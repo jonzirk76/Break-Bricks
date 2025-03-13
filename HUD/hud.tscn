@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpmk1aisafyh6"]
 
 [ext_resource type="Script" uid="uid://f0jojfwjqk3o" path="res://HUD/hud.gd" id="1_id2kc"]
-[ext_resource type="FontFile" uid="uid://dhyxl5k67jfqi" path="res://Fonts/Xolonium-Regular.ttf" id="2_62urw"]
+[ext_resource type="FontFile" uid="uid://dhyxl5k67jfqi" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="2_62urw"]
 [ext_resource type="Texture2D" uid="uid://7rypu7brpq7p" path="res://Assets/Screenshot 2025-02-27 at 06-06-37 Sousou no Frieren Anime Characters Wallpaper 4K HD PC #6031n.png" id="2_yu8mg"]
 
 [node name="HUD" type="CanvasLayer"]
