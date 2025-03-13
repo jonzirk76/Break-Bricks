@@ -8,6 +8,9 @@ size = Vector2(720, 178)
 
 [node name="Level 1" instance=ExtResource("1_uwm0f")]
 
+[node name="Paddle" parent="." index="4"]
+speed = 1000
+
 [node name="KillArea" type="Area2D" parent="KillZones" index="0"]
 collision_mask = 2
 

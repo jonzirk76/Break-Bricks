@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal start_game
 signal control_state(control_switch_state)
+signal music_toggle
 
 var score := 0
 var control_switch_state := "MOUSE MODE"
@@ -73,3 +74,6 @@ func _on_control_switch_pressed() -> void:
 	elif control_switch_state == "BUTTON MODE":
 		control_switch_state = "MOUSE MODE"
 	$ControlSwitch.text = control_switch_state
+
+func _on_music_button_toggled(toggled_on: bool) -> void:
+	music_toggle.emit()

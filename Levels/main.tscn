@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bbwenmdqnatkb"]
+[gd_scene load_steps=23 format=3 uid="uid://bbwenmdqnatkb"]
 
 [ext_resource type="Script" uid="uid://dv4bxtgjv0ecc" path="res://Levels/main.gd" id="1_1ce2o"]
 [ext_resource type="PackedScene" uid="uid://btv7jq1mwn3vw" path="res://Physical Objects/Walls/wall.tscn" id="1_mktae"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bal10sqwhvuwn" path="res://Physical Objects/Bricks/brick.tscn" id="6_o8ws1"]
 [ext_resource type="Script" uid="uid://dp6uvfvt1aokm" path="res://Physical Objects/Bricks/brick_controller.gd" id="8_hqcrn"]
 [ext_resource type="Script" uid="uid://dp8si1p2uu3l5" path="res://Modifications/item_controller.gd" id="11_0qyvt"]
+[ext_resource type="Script" uid="uid://dakipt8sv4pjg" path="res://Levels/audio.gd" id="13_3lhg3"]
+[ext_resource type="AudioStream" uid="uid://bm4kwov88xb41" path="res://Assets/Music/music-loop-bundle-download_2024_q4/Sketchbook 2024-10-23.ogg" id="14_wgfyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgfyn"]
 
@@ -75,8 +77,6 @@ seamless = true
 color_ramp = SubResource("Gradient_5mxy1")
 noise = SubResource("FastNoiseLite_3lhg3")
 
-[sub_resource type="AudioStream" id="AudioStream_hilkn"]
-
 [node name="Level" type="Node"]
 script = ExtResource("1_1ce2o")
 
@@ -125,9 +125,12 @@ script = ExtResource("11_0qyvt")
 
 [node name="HUD" parent="." instance=ExtResource("5_y4mhn")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStream_hilkn")
-volume_db = 5.0
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("13_3lhg3")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("14_wgfyn")
+autoplay = true
 
 [connection signal="add_point" from="." to="HUD" method="_on_main_add_point"]
 [connection signal="control_state" from="." to="Paddle" method="_on_main_control_state"]
@@ -152,4 +155,5 @@ volume_db = 5.0
 [connection signal="loot_area_entered" from="Loot" to="Balls" method="_on_loot_loot_area_entered"]
 [connection signal="loot_area_entered" from="Loot" to="HUD" method="_on_loot_loot_area_entered"]
 [connection signal="control_state" from="HUD" to="." method="_on_hud_control_state"]
+[connection signal="music_toggle" from="HUD" to="Audio" method="_on_hud_music_toggle"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

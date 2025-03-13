@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Break-bricks-main"
-run/main_scene="res://Levels/main.tscn"
+run/main_scene="uid://b71wrfnwlfbje"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Assets/icon.svg"
 
@@ -21,6 +21,10 @@ window/size/viewport_width=720
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/midi_import/plugin.cfg")
 
 [global_group]
 

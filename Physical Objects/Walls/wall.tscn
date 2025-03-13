@@ -1,14 +1,30 @@
-[gd_scene format=3 uid="uid://btv7jq1mwn3vw"]
+[gd_scene load_steps=3 format=3 uid="uid://btv7jq1mwn3vw"]
+
+[ext_resource type="AudioStream" uid="uid://u6hgjkom7p15" path="res://Assets/Sound/Data_Point_02.ogg" id="1_1r10q"]
+[ext_resource type="Script" uid="uid://b0corjs55c62q" path="res://Physical Objects/Walls/wall.gd" id="1_54dsk"]
 
 [node name="Wall" type="StaticBody2D"]
 collision_mask = 0
+script = ExtResource("1_54dsk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-32, -32)
-polygon = PackedVector2Array(0, 1312, 32, 1312, 32, 32, 752, 32, 752, 1312, 784, 1312, 784, 0, 0, 0)
+polygon = PackedVector2Array(0, 1808, 32, 1808, 32, 32, 752, 32, 752, 1808, 784, 1808, 784, 0, 0, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-32, -48)
 scale = Vector2(1, 1.39024)
 color = Color(0.433442, 9.98713e-07, 1.92523e-07, 1)
 polygon = PackedVector2Array(32, 1312, 0, 1312, 0, 0, 784, 0, 784, 1312, 752, 1312, 752, 34.5264, 32, 34.5264)
+
+[node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_1r10q")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-32, -48, -32, 1776, 1, 1776, 1, 1, 719, 1, 719, 1776, 752, 1776, 752, -48)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

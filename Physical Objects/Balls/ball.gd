@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(linear_velocity * delta)
 	if ball_launched == true:
 		ball_in_play(collision)
-		if linear_velocity.y == 0:
+		if linear_velocity.y <= 10 and linear_velocity.y >= -10:
 			_random_velocity()
 	else:
 		initial_ball_behavior(paddle_position)
@@ -57,6 +57,9 @@ func ball_in_play(collision):
 		if collision and collision_object is Paddle:
 			linear_velocity = self.global_position - collision_object.global_position
 			linear_velocity = linear_velocity.normalized() * stats["speed"]
+		#elif collision_object is Brick:
+			#linear_velocity = self.global_position - collision_object.global_position
+			#linear_velocity = linear_velocity.normalized() * stats["speed"]
 		else:
 			linear_velocity = linear_velocity.bounce(collision.get_normal())
 
