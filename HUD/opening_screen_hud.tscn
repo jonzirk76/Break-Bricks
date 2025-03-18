@@ -1,3 +1,41 @@
-[gd_scene format=3 uid="uid://ller6oa6im8h"]
+[gd_scene load_steps=7 format=3 uid="uid://ller6oa6im8h"]
+
+[ext_resource type="FontFile" uid="uid://dhyxl5k67jfqi" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="1_cx771"]
+[ext_resource type="Script" uid="uid://gmalf44ojh24" path="res://HUD/opening_screen_hud.gd" id="1_qh717"]
+[ext_resource type="Texture2D" uid="uid://4mdodec6c8kn" path="res://Assets/animated_items_outline.png" id="2_qh717"]
+
+[sub_resource type="Theme" id="Theme_qhi6k"]
+default_font = ExtResource("1_cx771")
+default_font_size = 30
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bacmc"]
+atlas = ExtResource("2_qh717")
+region = Rect2(5, 5, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bjhx"]
+atlas = ExtResource("2_qh717")
+region = Rect2(5, 101, 22, 22)
 
 [node name="OpeningScreenHUD" type="CanvasLayer"]
+script = ExtResource("1_qh717")
+
+[node name="ItemList" type="ItemList" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_qhi6k")
+allow_rmb_select = true
+allow_search = false
+auto_width = true
+wraparound_items = false
+item_count = 2
+same_column_width = true
+icon_mode = 0
+item_0/text = "Level 1"
+item_0/icon = SubResource("AtlasTexture_bacmc")
+item_1/text = "Test Level"
+item_1/icon = SubResource("AtlasTexture_7bjhx")
+
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

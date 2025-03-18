@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dysl00i1u7j0k"]
+
+[ext_resource type="Script" uid="uid://jyxw84pseo4e" path="res://mainest_menu.gd" id="1_eb8ig"]
+[ext_resource type="PackedScene" uid="uid://3kxsjdu4m560" path="res://HUD/main_hud.tscn" id="2_eb8ig"]
+[ext_resource type="AudioStream" uid="uid://difll54bikwcm" path="res://Assets/Music/music-loop-bundle-download_2024_q4/Sketchbook 2024-10-30.ogg" id="2_y1xti"]
+[ext_resource type="Script" uid="uid://dla37g8pimdye" path="res://audio.gd" id="3_c5pxm"]
+
+[node name="MainestMenu" type="Node"]
+script = ExtResource("1_eb8ig")
+title_music = ExtResource("2_y1xti")
+
+[node name="MainHud" parent="." instance=ExtResource("2_eb8ig")]
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("3_c5pxm")
+
+[connection signal="change_level_music" from="." to="Audio" method="_on_mainest_menu_change_level_music"]
+[connection signal="reset_hud" from="." to="MainHud" method="_on_mainest_menu_reset_hud"]
+[connection signal="start_level_music" from="." to="Audio" method="_on_mainest_menu_start_level_music"]
+[connection signal="level_selected" from="MainHud" to="." method="_on_main_hud_level_selected"]
+[connection signal="music_toggle" from="MainHud" to="Audio" method="_on_main_hud_music_toggle"]

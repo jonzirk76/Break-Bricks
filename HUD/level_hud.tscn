@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpmk1aisafyh6"]
+
+[ext_resource type="Script" uid="uid://f0jojfwjqk3o" path="res://HUD/level_hud.gd" id="1_vdle0"]
+[ext_resource type="Texture2D" uid="uid://7rypu7brpq7p" path="res://Assets/Screenshot 2025-02-27 at 06-06-37 Sousou no Frieren Anime Characters Wallpaper 4K HD PC #6031n.png" id="2_7j8jt"]
+[ext_resource type="FontFile" uid="uid://dhyxl5k67jfqi" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="3_ow83h"]
+
+[node name="LevelHud" type="CanvasLayer"]
+script = ExtResource("1_vdle0")
+
+[node name="TransitionBackground" type="TextureRect" parent="."]
+modulate = Color(0.142858, 0.142858, 0.142858, 1)
+texture_filter = 1
+texture_repeat = 2
+offset_left = 880.0
+offset_top = -320.0
+offset_right = 4720.0
+offset_bottom = 1760.0
+rotation = 1.57079
+scale = Vector2(0.525143, 0.525143)
+texture = ExtResource("2_7j8jt")
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_top = 200.0
+offset_right = 136.0
+offset_bottom = 261.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_ow83h")
+theme_override_font_sizes/font_size = 50
+text = "BREAK BRICKS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 51.0
+offset_top = 44.0
+offset_right = 91.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("3_ow83h")
+theme_override_font_sizes/font_size = 30
+text = "0
+"
+vertical_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

@@ -1,0 +1,79 @@
+[gd_scene load_steps=14 format=3 uid="uid://bbwenmdqnatkb"]
+
+[ext_resource type="Script" uid="uid://dv4bxtgjv0ecc" path="res://Levels/base_level.gd" id="1_1ce2o"]
+[ext_resource type="PackedScene" uid="uid://btv7jq1mwn3vw" path="res://Physical Objects/Walls/wall.tscn" id="1_mktae"]
+[ext_resource type="Texture2D" uid="uid://b8plesryuq8fw" path="res://Assets/icon.svg" id="2_3lhg3"]
+[ext_resource type="AudioStream" uid="uid://b6i2i2qblyrk5" path="res://Assets/Music/music-loop-bundle-download_2024_q4/Sketchbook 2024-12-26.ogg" id="2_5mxy1"]
+[ext_resource type="PackedScene" uid="uid://bq8265toxmcqh" path="res://Physical Objects/Balls/ball.tscn" id="2_xotb5"]
+[ext_resource type="PackedScene" uid="uid://cw52elds5h8mr" path="res://Physical Objects/Paddles/paddle.tscn" id="3_vgts4"]
+[ext_resource type="Script" uid="uid://dheb1wemo2es6" path="res://Physical Objects/Kill Zones/kill_zone_controller.gd" id="5_d766w"]
+[ext_resource type="PackedScene" uid="uid://bpmk1aisafyh6" path="res://HUD/level_hud.tscn" id="5_y4mhn"]
+[ext_resource type="Script" uid="uid://cml6lxpmos57v" path="res://Physical Objects/Balls/ball_controller.gd" id="6_08rsg"]
+[ext_resource type="PackedScene" uid="uid://bal10sqwhvuwn" path="res://Physical Objects/Bricks/brick.tscn" id="6_o8ws1"]
+[ext_resource type="Script" uid="uid://dp6uvfvt1aokm" path="res://Physical Objects/Bricks/brick_controller.gd" id="8_hqcrn"]
+[ext_resource type="Script" uid="uid://dp8si1p2uu3l5" path="res://Modifications/item_controller.gd" id="11_0qyvt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgfyn"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_1ce2o")
+music = ExtResource("2_5mxy1")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(360, 48)
+texture_normal = ExtResource("2_3lhg3")
+shape = SubResource("RectangleShape2D_wgfyn")
+action = "launch"
+
+[node name="Background" type="Node" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Wall" parent="." instance=ExtResource("1_mktae")]
+
+[node name="Paddles" type="Node" parent="."]
+
+[node name="Paddle" parent="Paddles" instance=ExtResource("3_vgts4")]
+position = Vector2(352, 1248)
+
+[node name="KillZones" type="Node" parent="."]
+script = ExtResource("5_d766w")
+
+[node name="Balls" type="Node" parent="."]
+script = ExtResource("6_08rsg")
+ball_scene = ExtResource("2_xotb5")
+
+[node name="Bricks" type="Node" parent="."]
+script = ExtResource("8_hqcrn")
+brick_scene = ExtResource("6_o8ws1")
+
+[node name="Loot" type="Node" parent="."]
+script = ExtResource("11_0qyvt")
+
+[node name="LevelHUD" parent="." instance=ExtResource("5_y4mhn")]
+
+[connection signal="add_point" from="." to="LevelHUD" method="_on_main_add_point"]
+[connection signal="control_state" from="." to="Paddles/Paddle" method="_on_main_control_state"]
+[connection signal="game_lost" from="." to="LevelHUD" method="_on_main_game_lost"]
+[connection signal="game_start" from="." to="Paddles/Paddle" method="_on_main_game_start"]
+[connection signal="game_start" from="." to="Balls" method="_on_main_game_start"]
+[connection signal="game_start" from="." to="Bricks" method="_on_main_game_start"]
+[connection signal="game_win" from="." to="Balls" method="_on_level_game_win"]
+[connection signal="game_win" from="." to="LevelHUD" method="_on_main_game_win"]
+[connection signal="intro_start" from="." to="LevelHUD" method="_on_main_intro_start"]
+[connection signal="reset_game" from="." to="Paddles/Paddle" method="_on_main_reset_game"]
+[connection signal="reset_game" from="." to="Balls" method="_on_main_reset_game"]
+[connection signal="reset_game" from="." to="Bricks" method="_on_main_reset_game"]
+[connection signal="reset_game" from="." to="Loot" method="_on_main_reset_game"]
+[connection signal="paddle_position" from="Paddles/Paddle" to="Balls" method="_on_paddle_paddle_position"]
+[connection signal="kill_area_entered" from="KillZones" to="Balls" method="_on_kill_zones_kill_area_entered"]
+[connection signal="ball_count" from="Balls" to="." method="_on_balls_ball_count"]
+[connection signal="brick_broken" from="Bricks" to="Loot" method="_on_bricks_brick_broken"]
+[connection signal="brick_broken" from="Bricks" to="LevelHUD" method="_on_bricks_brick_broken"]
+[connection signal="brick_count" from="Bricks" to="." method="_on_bricks_brick_count"]
+[connection signal="loot_area_entered" from="Loot" to="Balls" method="_on_loot_loot_area_entered"]
+[connection signal="loot_area_entered" from="Loot" to="LevelHUD" method="_on_loot_loot_area_entered"]
+[connection signal="finished_resetting" from="LevelHUD" to="." method="reset"]
+[connection signal="start_game" from="LevelHUD" to="." method="new_game"]

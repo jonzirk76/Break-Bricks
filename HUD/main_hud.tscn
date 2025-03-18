@@ -1,0 +1,205 @@
+[gd_scene load_steps=13 format=3 uid="uid://3kxsjdu4m560"]
+
+[ext_resource type="Script" uid="uid://00r5i1gcpm4e" path="res://HUD/main_hud.gd" id="1_xju5g"]
+[ext_resource type="Texture2D" uid="uid://dtqdcakjegf5t" path="res://Assets/1000_F_493148923_gDBU0s80qVGny2sMX3WShD31w5g7vV0T.webp" id="2_xju5g"]
+[ext_resource type="FontFile" uid="uid://dhyxl5k67jfqi" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="3_k6ft6"]
+[ext_resource type="Script" uid="uid://bkt51lunhae5a" path="res://HUD/controls.gd" id="4_4nemj"]
+[ext_resource type="Theme" uid="uid://b5ftakjqy7us6" path="res://Themes/main_menu.tres" id="5_us48w"]
+[ext_resource type="Script" uid="uid://cxb65dibu6hoq" path="res://HUD/main_menu.gd" id="6_7s74t"]
+[ext_resource type="Texture2D" uid="uid://4mdodec6c8kn" path="res://Assets/animated_items_outline.png" id="6_nbuvy"]
+[ext_resource type="Script" uid="uid://oslbca4qghr6" path="res://HUD/level_select.gd" id="8_4nemj"]
+[ext_resource type="Script" uid="uid://cewhjyg504wwk" path="res://HUD/settings_menu.gd" id="9_us48w"]
+
+[sub_resource type="Theme" id="Theme_8a38i"]
+default_font = ExtResource("3_k6ft6")
+default_font_size = 30
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgtof"]
+atlas = ExtResource("6_nbuvy")
+region = Rect2(5, 5, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sa2t"]
+atlas = ExtResource("6_nbuvy")
+region = Rect2(5, 101, 22, 22)
+
+[node name="MainHud" type="CanvasLayer"]
+script = ExtResource("1_xju5g")
+
+[node name="Graphics" type="Control" parent="." groups=["title_ui"]]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TitleBackground" type="TextureRect" parent="Graphics"]
+modulate = Color(0.142858, 0.142858, 0.142858, 1)
+texture_filter = 1
+texture_repeat = 2
+layout_mode = 0
+offset_left = -296.0
+offset_right = 3423.0
+offset_bottom = 2015.0
+scale = Vector2(0.635852, 0.635852)
+texture = ExtResource("2_xju5g")
+
+[node name="Message" type="Label" parent="." groups=["title_ui"]]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_top = 200.0
+offset_right = 136.0
+offset_bottom = 261.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_k6ft6")
+theme_override_font_sizes/font_size = 50
+text = "BREAK BRICKS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="." groups=["title_ui"]]
+visible = false
+offset_left = 51.0
+offset_top = 44.0
+offset_right = 91.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("3_k6ft6")
+theme_override_font_sizes/font_size = 30
+text = "0
+"
+vertical_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ControlSwitch" type="Button" parent="." groups=["title_ui"]]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 118.0
+grow_vertical = 0
+text = "MOUSE MODE"
+
+[node name="GamepadControls" type="Label" parent="." groups=["title_ui"]]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -274.0
+offset_top = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "GAMEPAD CONTROLS
+Start Button: Toggle Control
+\"A\" Button: Start Game/Launch Ball"
+horizontal_alignment = 2
+
+[node name="MusicButton" type="CheckButton" parent="."]
+top_level = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -44.0
+offset_bottom = 24.0
+grow_horizontal = 0
+button_pressed = true
+text = "Music"
+
+[node name="Controls" type="Control" parent="." groups=["title_ui"]]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_4nemj")
+
+[node name="MainMenu" type="ItemList" parent="Controls" groups=["title_ui"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -97.5
+offset_right = 174.0
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_us48w")
+allow_search = false
+auto_width = true
+auto_height = true
+item_count = 3
+same_column_width = true
+icon_mode = 0
+item_0/text = "Random Level"
+item_1/text = "Level Select"
+item_2/text = "Settings"
+item_2/disabled = true
+script = ExtResource("6_7s74t")
+
+[node name="LevelSelect" type="ItemList" parent="Controls" groups=["settings_ui"]]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.5
+offset_top = -94.5
+offset_right = 88.5
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_8a38i")
+allow_rmb_select = true
+allow_search = false
+auto_width = true
+auto_height = true
+wraparound_items = false
+item_count = 3
+same_column_width = true
+icon_mode = 0
+item_0/text = "Level 1"
+item_0/icon = SubResource("AtlasTexture_mgtof")
+item_1/text = "Test Level"
+item_1/icon = SubResource("AtlasTexture_0sa2t")
+item_2/text = "Back"
+script = ExtResource("8_4nemj")
+
+[node name="SettingsMenu" type="ItemList" parent="Controls" groups=["settings_ui"]]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 1
+script = ExtResource("9_us48w")
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="ControlSwitch" to="." method="_on_control_switch_pressed"]
+[connection signal="toggled" from="MusicButton" to="." method="_on_music_button_toggled"]
+[connection signal="level_selected" from="Controls" to="." method="_on_controls_level_selected"]
+[connection signal="item_activated" from="Controls/MainMenu" to="Controls" method="_on_main_menu_item_activated"]
+[connection signal="item_clicked" from="Controls/MainMenu" to="Controls" method="_on_main_menu_item_clicked"]
+[connection signal="item_clicked" from="Controls/LevelSelect" to="Controls" method="_on_level_select_item_clicked"]

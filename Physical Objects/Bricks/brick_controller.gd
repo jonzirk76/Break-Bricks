@@ -28,11 +28,11 @@ func make_bricks():
 func brick_break(position, brick_points):
 	brick_broken.emit(position, brick_points)
 
-func _on_main_reset_game() -> void:
-	get_tree().call_group("brick", "queue_free")
-	for child in get_children():
-		if child is Marker2D:
-			child.process_mode = Node.PROCESS_MODE_INHERIT
+#func _on_main_reset_game() -> void:
+	#get_tree().call_group("brick", "queue_free")
+	#for child in get_children():
+		#if child is Marker2D:
+			#child.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_main_game_start() -> void:
 	make_bricks()

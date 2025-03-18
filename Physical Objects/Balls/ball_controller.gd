@@ -27,11 +27,11 @@ func make_balls():
 func _on_main_game_start() -> void:
 	make_balls()
 
-func _on_main_reset_game() -> void:
-	get_tree().call_group("ball", "queue_free")
-	for child in get_children():
-		if child is Marker2D:
-			child.process_mode = Node.PROCESS_MODE_INHERIT
+#func _on_main_reset_game() -> void:
+	#get_tree().call_group("ball", "queue_free")
+	#for child in get_children():
+		#if child is Marker2D:
+			#child.process_mode = Node.PROCESS_MODE_INHERIT
 
 func count_balls():
 	var initial_ball_count := 0
@@ -53,3 +53,9 @@ func _on_paddle_paddle_position(position: Variant) -> void:
 	for child in get_children():
 		if child is Ball and child.ball_launched == false:
 			child.paddle_position = position
+
+
+func _on_level_game_win() -> void:
+	for child in get_children():
+		if child is Ball:
+			child.process_mode = Node.PROCESS_MODE_DISABLED

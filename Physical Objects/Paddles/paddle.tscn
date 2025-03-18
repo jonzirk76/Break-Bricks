@@ -84,6 +84,7 @@ slide_on_ceiling = false
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_f0sgn")
+speed = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
