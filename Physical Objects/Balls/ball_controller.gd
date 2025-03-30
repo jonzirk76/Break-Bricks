@@ -1,6 +1,7 @@
 extends Node
 
 signal ball_count(balls_alive)
+signal ball_mod(item_stats)
 
 @export var ball_scene : PackedScene
 
@@ -59,3 +60,9 @@ func _on_level_game_win() -> void:
 	for child in get_children():
 		if child is Ball:
 			child.process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _on_loot_loot_area_entered(item_stats: Variant, body: Variant) -> void:
+	for child in get_children():
+		if child == body:
+			child.mod_change(item_stats)

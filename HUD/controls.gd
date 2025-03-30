@@ -37,3 +37,6 @@ func _on_level_select_item_clicked(index: int, at_position: Vector2, mouse_butto
 		$LevelSelect.process_mode = Node.PROCESS_MODE_DISABLED
 		$MainMenu.show()
 		$MainMenu.process_mode = Node.PROCESS_MODE_INHERIT
+
+func _on_main_hud_reset_menu() -> void:
+	$MainMenu.process_mode = Node.PROCESS_MODE_INHERIT

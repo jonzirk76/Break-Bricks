@@ -4,6 +4,7 @@ signal start_game
 signal level_selected(level)
 signal control_state(control_switch_state)
 signal music_toggle
+signal reset_menu
 
 var control_switch_state := "MOUSE MODE"
 var start_menu_active = true
@@ -89,3 +90,5 @@ func _on_mainest_menu_reset_hud(last_score) -> void:
 	if last_score:
 		$ScoreLabel.show()
 		$ScoreLabel.text = str(last_score)
+		
+	reset_menu.emit()

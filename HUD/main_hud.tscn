@@ -71,7 +71,9 @@ vertical_alignment = 1
 wait_time = 2.0
 one_shot = true
 
-[node name="ControlSwitch" type="Button" parent="." groups=["title_ui"]]
+[node name="ControlSwitch" type="Button" parent="."]
+process_mode = 4
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -80,7 +82,9 @@ offset_right = 118.0
 grow_vertical = 0
 text = "MOUSE MODE"
 
-[node name="GamepadControls" type="Label" parent="." groups=["title_ui"]]
+[node name="GamepadControls" type="Label" parent="."]
+process_mode = 4
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -168,14 +172,15 @@ allow_search = false
 auto_width = true
 auto_height = true
 wraparound_items = false
-item_count = 3
+item_count = 4
 same_column_width = true
 icon_mode = 0
 item_0/text = "Level 1"
 item_0/icon = SubResource("AtlasTexture_mgtof")
 item_1/text = "Test Level"
 item_1/icon = SubResource("AtlasTexture_0sa2t")
-item_2/text = "Back"
+item_2/text = "Secret Level"
+item_3/text = "Back"
 script = ExtResource("8_4nemj")
 
 [node name="SettingsMenu" type="ItemList" parent="Controls" groups=["settings_ui"]]
@@ -196,6 +201,7 @@ grow_vertical = 2
 item_count = 1
 script = ExtResource("9_us48w")
 
+[connection signal="reset_menu" from="." to="Controls" method="_on_main_hud_reset_menu"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="pressed" from="ControlSwitch" to="." method="_on_control_switch_pressed"]
 [connection signal="toggled" from="MusicButton" to="." method="_on_music_button_toggled"]

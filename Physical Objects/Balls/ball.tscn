@@ -22,7 +22,7 @@ gravity_scale = 0.0
 linear_damp_mode = 1
 script = ExtResource("1_vk16r")
 stats = {
-"speed": 350
+"speed_mod": 350
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

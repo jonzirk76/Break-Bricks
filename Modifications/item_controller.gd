@@ -1,6 +1,6 @@
 extends Node
 
-signal loot_area_entered(item_stats)
+signal loot_area_entered(item_stats, body)
 
 @onready var base_mod_scene = load("res://Modifications/BaseMod/base_mod.tscn")
 @onready var items = {

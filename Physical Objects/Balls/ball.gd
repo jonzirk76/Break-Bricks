@@ -3,7 +3,7 @@ extends RigidBody2D
 class_name Ball
 
 @export var stats = {
-	"speed": 200
+	"speed_mod": 200
 }
 
 @onready var directions := {
@@ -46,7 +46,7 @@ func _input(event):
 func _random_velocity():
 	var initial_velocity = directions.values()[randi() % directions.size()]
 	linear_velocity = initial_velocity.normalized()
-	linear_velocity = linear_velocity * stats["speed"]
+	linear_velocity = linear_velocity * stats["speed_mod"]
 
 func initial_ball_behavior(paddle_position):
 	position = Vector2(paddle_position.x , position.y)
@@ -56,17 +56,17 @@ func ball_in_play(collision):
 		var collision_object = collision.get_collider()
 		if collision and collision_object is Paddle:
 			linear_velocity = self.global_position - collision_object.global_position
-			linear_velocity = linear_velocity.normalized() * stats["speed"]
+			linear_velocity = linear_velocity.normalized() * stats["speed_mod"]
 		#elif collision_object is Brick:
 			#linear_velocity = self.global_position - collision_object.global_position
 			#linear_velocity = linear_velocity.normalized() * stats["speed"]
 		else:
 			linear_velocity = linear_velocity.bounce(collision.get_normal())
 
-func mod_change(mods):
+func mod_change(item_stats):
 	for stat in stats:
-		stats[stat] += mods[stat]
-		linear_velocity = linear_velocity.normalized() * stats["speed"]
+		stats[stat] += item_stats[stat]
+		linear_velocity = linear_velocity.normalized() * stats["speed_mod"]
 
 func kill_ball():
 	queue_free()
