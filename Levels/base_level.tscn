@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbwenmdqnatkb"]
+[gd_scene load_steps=18 format=3 uid="uid://bbwenmdqnatkb"]
 
 [ext_resource type="Script" uid="uid://dv4bxtgjv0ecc" path="res://Levels/base_level.gd" id="1_1ce2o"]
 [ext_resource type="PackedScene" uid="uid://btv7jq1mwn3vw" path="res://Physical Objects/Walls/wall.tscn" id="1_mktae"]
@@ -12,8 +12,47 @@
 [ext_resource type="PackedScene" uid="uid://bal10sqwhvuwn" path="res://Physical Objects/Bricks/brick.tscn" id="6_o8ws1"]
 [ext_resource type="Script" uid="uid://dp6uvfvt1aokm" path="res://Physical Objects/Bricks/brick_controller.gd" id="8_hqcrn"]
 [ext_resource type="Script" uid="uid://dp8si1p2uu3l5" path="res://Modifications/item_controller.gd" id="11_0qyvt"]
+[ext_resource type="Texture2D" uid="uid://b4fi8r61rcsji" path="res://Assets/breakout_tilemap.png" id="11_wf03h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgfyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wf03h"]
+size = Vector2(720, 178)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ed4s"]
+resource_name = "(48, 16)"
+texture = ExtResource("11_wf03h")
+margins = Vector2i(1, 1)
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(48, 16)
+0:0/animation_columns = 1
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -8, 24, -8, 24, 8, -24, 8)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_mqdjw"]
+tile_size = Vector2i(24, 16)
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_2ed4s")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_1ce2o")
@@ -41,13 +80,27 @@ position = Vector2(352, 1248)
 [node name="KillZones" type="Node" parent="."]
 script = ExtResource("5_d766w")
 
+[node name="KillArea" type="Area2D" parent="KillZones"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZones/KillArea"]
+position = Vector2(360, 1368)
+shape = SubResource("RectangleShape2D_wf03h")
+
 [node name="Balls" type="Node" parent="."]
 script = ExtResource("6_08rsg")
 ball_scene = ExtResource("2_xotb5")
 
+[node name="Marker2D" type="Marker2D" parent="Balls"]
+position = Vector2(352, 1232)
+
 [node name="Bricks" type="Node" parent="."]
 script = ExtResource("8_hqcrn")
 brick_scene = ExtResource("6_o8ws1")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Bricks"]
+position = Vector2(-12, 0)
+tile_set = SubResource("TileSet_mqdjw")
 
 [node name="Loot" type="Node" parent="."]
 script = ExtResource("11_0qyvt")
@@ -55,6 +108,8 @@ script = ExtResource("11_0qyvt")
 [node name="LevelHUD" parent="." instance=ExtResource("5_y4mhn")]
 
 [connection signal="add_point" from="." to="LevelHUD" method="_on_main_add_point"]
+[connection signal="ball_died" from="." to="Balls" method="_on_level_ball_died"]
+[connection signal="ball_died" from="." to="LevelHUD" method="_on_level_ball_died"]
 [connection signal="control_state" from="." to="Paddles/Paddle" method="_on_main_control_state"]
 [connection signal="game_lost" from="." to="LevelHUD" method="_on_main_game_lost"]
 [connection signal="game_start" from="." to="Paddles/Paddle" method="_on_main_game_start"]
@@ -70,6 +125,8 @@ script = ExtResource("11_0qyvt")
 [connection signal="paddle_position" from="Paddles/Paddle" to="Balls" method="_on_paddle_paddle_position"]
 [connection signal="kill_area_entered" from="KillZones" to="Balls" method="_on_kill_zones_kill_area_entered"]
 [connection signal="ball_count" from="Balls" to="." method="_on_balls_ball_count"]
+[connection signal="extra_ball_count_changed" from="Balls" to="LevelHUD" method="_on_balls_extra_ball_count_changed"]
+[connection signal="no_extra_balls" from="Balls" to="." method="_on_balls_no_extra_balls"]
 [connection signal="brick_broken" from="Bricks" to="Loot" method="_on_bricks_brick_broken"]
 [connection signal="brick_broken" from="Bricks" to="LevelHUD" method="_on_bricks_brick_broken"]
 [connection signal="brick_count" from="Bricks" to="." method="_on_bricks_brick_count"]

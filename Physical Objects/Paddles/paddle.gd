@@ -30,12 +30,12 @@ func _physics_process(delta):
 		if position.distance_to(target) > 10:
 			move_and_slide()
 		velocity.y = 0
-		paddle_position.emit(position)
 	#elif control_state == "BUTTON MODE":
 		#position += velocity * delta
 		#move_and_slide()
 		#paddle_position.emit(position)
 	position.y = clamp(position.y,paddle_line,paddle_line)
+	paddle_position.emit(Vector2(position.x, position.y - 18))
 
 func _process(delta: float) -> void:
 	pass

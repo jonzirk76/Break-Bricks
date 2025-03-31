@@ -29,8 +29,8 @@ func _physics_process(delta: float) -> void:
 		ball_in_play(collision)
 		if linear_velocity.y <= 10 and linear_velocity.y >= -10:
 			_random_velocity()
-	else:
-		initial_ball_behavior(paddle_position)
+	#else:
+		#initial_ball_behavior(paddle_position)
 		
 	#var contact = $CollectionArea.get_overlapping_areas()
 	#for body in contact:
@@ -41,6 +41,8 @@ func _input(event):
 	# Use is_action_pressed to only accept single taps as input instead of mouse drags.
 	if ball_launched == false and event.is_action("launch"):
 		_random_velocity()
+		collision_layer = 0b00000000_00000000_00000000_00000010
+		collision_mask = 0b00000000_00000000_00000000_00001101
 		ball_launched = true
 
 func _random_velocity():
@@ -48,8 +50,8 @@ func _random_velocity():
 	linear_velocity = initial_velocity.normalized()
 	linear_velocity = linear_velocity * stats["speed_mod"]
 
-func initial_ball_behavior(paddle_position):
-	position = Vector2(paddle_position.x , position.y)
+#func initial_ball_behavior(paddle_position):
+	#position = paddle_position
 	
 func ball_in_play(collision):
 	if collision:

@@ -6,8 +6,8 @@ signal change_level_music
 
 @onready var levels = {
 	"0" = load("res://Levels/level_1.tscn"),
-	"1" = load("res://Levels/test_level.tscn"),
-	"2" = load("res://Levels/secret_level.tscn")
+	"1" = load("res://Levels/secret_level.tscn"),
+	"2" = load("res://Levels/test_level.tscn")
 }
 @export var title_music : AudioStream
 

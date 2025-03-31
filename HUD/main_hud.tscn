@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://3kxsjdu4m560"]
+[gd_scene load_steps=14 format=3 uid="uid://3kxsjdu4m560"]
 
 [ext_resource type="Script" uid="uid://00r5i1gcpm4e" path="res://HUD/main_hud.gd" id="1_xju5g"]
 [ext_resource type="Texture2D" uid="uid://dtqdcakjegf5t" path="res://Assets/1000_F_493148923_gDBU0s80qVGny2sMX3WShD31w5g7vV0T.webp" id="2_xju5g"]
@@ -16,7 +16,11 @@ default_font_size = 30
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgtof"]
 atlas = ExtResource("6_nbuvy")
-region = Rect2(5, 5, 22, 22)
+region = Rect2(6, 198, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nemj"]
+atlas = ExtResource("6_nbuvy")
+region = Rect2(5, 39, 22, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0sa2t"]
 atlas = ExtResource("6_nbuvy")
@@ -175,11 +179,12 @@ wraparound_items = false
 item_count = 4
 same_column_width = true
 icon_mode = 0
-item_0/text = "Level 1"
+item_0/text = "The Wall"
 item_0/icon = SubResource("AtlasTexture_mgtof")
-item_1/text = "Test Level"
-item_1/icon = SubResource("AtlasTexture_0sa2t")
-item_2/text = "Secret Level"
+item_1/text = "Heart"
+item_1/icon = SubResource("AtlasTexture_4nemj")
+item_2/text = "Test Level"
+item_2/icon = SubResource("AtlasTexture_0sa2t")
 item_3/text = "Back"
 script = ExtResource("8_4nemj")
 

@@ -10,6 +10,7 @@ var score := 0
 #var control_switch_state := "MOUSE MODE"
 var start_menu_active = true
 var last_score
+@export var balls_remaining := 5
 
 func _input(event: InputEvent) -> void:
 	if start_menu_active == true:
@@ -79,3 +80,6 @@ func _on_loot_loot_area_entered(item_stats: Variant, body: Variant) -> void:
 	#elif control_switch_state == "BUTTON MODE":
 		#control_switch_state = "MOUSE MODE"
 	#$ControlSwitch.text = control_switch_state
+
+func _on_balls_extra_ball_count_changed(extra_balls_remaining: Variant) -> void:
+	$BallsRemaining.text = "Balls: " + str(extra_balls_remaining)

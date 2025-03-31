@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl68yfca83knf"]
+[gd_scene load_steps=11 format=4 uid="uid://dl68yfca83knf"]
 
 [ext_resource type="PackedScene" uid="uid://bbwenmdqnatkb" path="res://Levels/base_level.tscn" id="1_4k50d"]
 [ext_resource type="AudioStream" uid="uid://cn4amg10h8g4f" path="res://Assets/Music/music-loop-bundle-download_2024_q4/Sketchbook 2024-12-18.ogg" id="2_3158n"]
 [ext_resource type="Shader" uid="uid://bxa05wnlbl06a" path="res://Levels/main.gdshader" id="2_i4ak4"]
-[ext_resource type="PackedScene" uid="uid://3whjj11f4c4v" path="res://Physical Objects/Bricks/brick_marker.tscn" id="3_3158n"]
 
 [sub_resource type="Gradient" id="Gradient_2edb7"]
 interpolation_color_space = 2
@@ -67,9 +66,6 @@ seamless = true
 color_ramp = SubResource("Gradient_8txux")
 noise = SubResource("FastNoiseLite_cam6n")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k50d"]
-size = Vector2(720, 178)
-
 [node name="TestLevel" instance=ExtResource("1_4k50d")]
 music = ExtResource("2_3158n")
 
@@ -86,15 +82,5 @@ rotation = 1.57079
 scale = Vector2(0.525143, 0.525143)
 texture = SubResource("NoiseTexture2D_27iqu")
 
-[node name="KillArea" type="Area2D" parent="KillZones" index="0"]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZones/KillArea" index="0"]
-position = Vector2(360, 1368)
-shape = SubResource("RectangleShape2D_4k50d")
-
-[node name="Marker2D" type="Marker2D" parent="Balls" index="0"]
-position = Vector2(352, 1224)
-
-[node name="BrickMarker3" parent="Bricks" index="0" instance=ExtResource("3_3158n")]
-position = Vector2(360, 1016)
+[node name="TileMapLayer" parent="Bricks" index="0"]
+tile_map_data = PackedByteArray("AAALADgAAAAAAAAAAAAMADkAAAAAAAAAAAANADoAAAAAAAAAAAAOADsAAAAAAAAAAAAPADwAAAAAAAAAAAAQAD0AAAAAAAAAAAAGADkAAAAAAAAAAAAHADgAAAAAAAAAAAAIADcAAAAAAAAAAAAJADYAAAAAAAAAAAAKADUAAAAAAAAAAAALADQAAAAAAAAAAAAMADMAAAAAAAAAAAANADIAAAAAAAAAAAAOADEAAAAAAAAAAAAPADAAAAAAAAAAAAAQAC8AAAAAAAAAAAA=")
