@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bal10sqwhvuwn"]
+[gd_scene load_steps=14 format=3 uid="uid://bal10sqwhvuwn"]
 
 [ext_resource type="Script" uid="uid://bfes4bjelqet5" path="res://Physical Objects/Bricks/brick.gd" id="1_78lti"]
 [ext_resource type="Texture2D" uid="uid://cbc2gpwxr4p6p" path="res://Assets/breakout_pieces.png" id="3_n5dcw"]
@@ -142,6 +142,13 @@ _data = {
 &"break": SubResource("Animation_cvhb1")
 }
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n5dcw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cvhb1"]
+width = 8
+height = 8
+noise = SubResource("FastNoiseLite_n5dcw")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7o301"]
 lifetime_randomness = 0.4
 particle_flag_disable_z = true
@@ -188,7 +195,8 @@ speed_scale = 2.0
 
 [node name="DeathParticles" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 50000
+amount = 1000
+texture = SubResource("NoiseTexture2D_cvhb1")
 process_material = SubResource("ParticleProcessMaterial_7o301")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=4 uid="uid://dl68yfca83knf"]
+
+[ext_resource type="PackedScene" uid="uid://bbwenmdqnatkb" path="res://Levels/base_level.tscn" id="1_4k50d"]
+[ext_resource type="AudioStream" uid="uid://cn4amg10h8g4f" path="res://Assets/Music/music-loop-bundle-download_2024_q4/Sketchbook 2024-12-18.ogg" id="2_3158n"]
+[ext_resource type="Shader" uid="uid://bxa05wnlbl06a" path="res://Levels/main.gdshader" id="2_i4ak4"]
+
+[sub_resource type="Gradient" id="Gradient_2edb7"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.513661, 1)
+colors = PackedColorArray(0.00512207, 0.302329, 0.4277, 1, 1, 1, 1, 1, 0.0923439, 0.726858, 0.915525, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i4ak4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pwnk4"]
+seamless = true
+seamless_blend_skirt = 0.475
+as_normal_map = true
+color_ramp = SubResource("Gradient_2edb7")
+noise = SubResource("FastNoiseLite_i4ak4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwlqj"]
+shader = ExtResource("2_i4ak4")
+shader_parameter/snes_transparency = true
+shader_parameter/gba_transparency = true
+shader_parameter/horizontal_scan_line = false
+shader_parameter/vertical_scan_line = false
+shader_parameter/enable_palette_cycling = true
+shader_parameter/sprite_scroll_direction = Vector2(0.5, 0.5)
+shader_parameter/sprite_scroll_speed = 0.1
+shader_parameter/gba_transparency_scroll_direction = Vector2(-0.5, -0.5)
+shader_parameter/gba_transparency_scroll_speed = 0.5
+shader_parameter/gba_transparency_value = 0.35
+shader_parameter/horizontal_wave_amplitude = 0.01
+shader_parameter/horizontal_wave_frequency = 0.01
+shader_parameter/horizontal_wave_speed = 2.0
+shader_parameter/vertical_wave_amplitude = 0.01
+shader_parameter/vertical_wave_frequency = 0.01
+shader_parameter/vertical_wave_speed = 2.0
+shader_parameter/horizontal_deform_amplitude = 0.01
+shader_parameter/horizontal_deform_frequency = 0.01
+shader_parameter/horizontal_deform_speed = 0.0
+shader_parameter/vertical_deform_amplitude = 0.01
+shader_parameter/vertical_deform_frequency = 0.01
+shader_parameter/vertical_deform_speed = 0.0
+shader_parameter/palette_cycling_speed = 0.1
+shader_parameter/palette = SubResource("NoiseTexture2D_pwnk4")
+
+[sub_resource type="Gradient" id="Gradient_8txux"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cam6n"]
+seed = 7576
+frequency = 0.0068
+fractal_type = 2
+fractal_octaves = 2
+fractal_lacunarity = 6.345
+fractal_gain = 0.375
+fractal_weighted_strength = 0.27
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 2.0
+domain_warp_frequency = 0.19
+domain_warp_fractal_lacunarity = 2.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_27iqu"]
+seamless = true
+color_ramp = SubResource("Gradient_8txux")
+noise = SubResource("FastNoiseLite_cam6n")
+
+[node name="TestLevel" instance=ExtResource("1_4k50d")]
+music = ExtResource("2_3158n")
+
+[node name="TextureRect" type="TextureRect" parent="Background" index="0"]
+modulate = Color(0.0445579, 0.0445578, 0.0445578, 1)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_rwlqj")
+offset_left = 880.0
+offset_top = -320.0
+offset_right = 4720.0
+offset_bottom = 1760.0
+rotation = 1.57079
+scale = Vector2(0.525143, 0.525143)
+texture = SubResource("NoiseTexture2D_27iqu")
+
+[node name="TileMapLayer" parent="Bricks" index="0"]
+tile_map_data = PackedByteArray("AAALADgAAAAAAAAAAAAMADkAAAAAAAAAAAANADoAAAAAAAAAAAAOADsAAAAAAAAAAAAPADwAAAAAAAAAAAAQAD0AAAAAAAAAAAAGADkAAAAAAAAAAAAHADgAAAAAAAAAAAAIADcAAAAAAAAAAAAJADYAAAAAAAAAAAAKADUAAAAAAAAAAAALADQAAAAAAAAAAAAMADMAAAAAAAAAAAANADIAAAAAAAAAAAAOADEAAAAAAAAAAAAPADAAAAAAAAAAAAAQAC8AAAAAAAAAAAA=")

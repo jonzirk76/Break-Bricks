@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Break-bricks-main"
-run/main_scene="uid://b71wrfnwlfbje"
+run/main_scene="uid://dysl00i1u7j0k"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Assets/icon.svg"
 

@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=4 uid="uid://b71wrfnwlfbje"]
+
+[ext_resource type="PackedScene" uid="uid://bbwenmdqnatkb" path="res://Levels/base_level.tscn" id="1_uwm0f"]
+[ext_resource type="AudioStream" uid="uid://bm4kwov88xb41" path="res://Assets/Music/music-loop-bundle-download_2024_q4/Sketchbook 2024-10-23.ogg" id="2_rf6l5"]
+[ext_resource type="Shader" uid="uid://bxa05wnlbl06a" path="res://Levels/main.gdshader" id="2_wvewk"]
+
+[sub_resource type="Gradient" id="Gradient_xtg75"]
+offsets = PackedFloat32Array(0.0983607, 0.180328, 0.245902, 0.289617, 0.387978, 0.486339)
+colors = PackedColorArray(0, 0, 0.25098, 0.796078, 0, 0, 1, 1, 0, 0, 0.462745, 1, 0.181218, 1.66532e-05, 0.726595, 1, 0.220617, 0.119153, 0.596779, 1, 0, 0, 0.964706, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ui7qv"]
+noise_type = 0
+frequency = 0.0009
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hilkn"]
+color_ramp = SubResource("Gradient_xtg75")
+noise = SubResource("FastNoiseLite_ui7qv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pjihm"]
+shader = ExtResource("2_wvewk")
+shader_parameter/snes_transparency = true
+shader_parameter/gba_transparency = true
+shader_parameter/horizontal_scan_line = false
+shader_parameter/vertical_scan_line = false
+shader_parameter/enable_palette_cycling = true
+shader_parameter/sprite_scroll_direction = Vector2(-1, -1)
+shader_parameter/sprite_scroll_speed = 0.1
+shader_parameter/gba_transparency_scroll_direction = Vector2(1, 1)
+shader_parameter/gba_transparency_scroll_speed = 0.5
+shader_parameter/gba_transparency_value = 0.35
+shader_parameter/horizontal_wave_amplitude = 0.01
+shader_parameter/horizontal_wave_frequency = 0.01
+shader_parameter/horizontal_wave_speed = 1.0
+shader_parameter/vertical_wave_amplitude = 0.01
+shader_parameter/vertical_wave_frequency = 0.01
+shader_parameter/vertical_wave_speed = 1.0
+shader_parameter/horizontal_deform_amplitude = 0.01
+shader_parameter/horizontal_deform_frequency = 0.01
+shader_parameter/horizontal_deform_speed = 1.0
+shader_parameter/vertical_deform_amplitude = 0.01
+shader_parameter/vertical_deform_frequency = 0.01
+shader_parameter/vertical_deform_speed = 1.0
+shader_parameter/palette_cycling_speed = 0.1
+shader_parameter/palette = SubResource("NoiseTexture2D_hilkn")
+
+[sub_resource type="Gradient" id="Gradient_5mxy1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3lhg3"]
+seed = 7576
+frequency = 0.0068
+fractal_type = 2
+fractal_octaves = 2
+fractal_lacunarity = 6.345
+fractal_gain = 0.375
+fractal_weighted_strength = 0.27
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 2.0
+domain_warp_frequency = 0.19
+domain_warp_fractal_lacunarity = 2.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oakcl"]
+seamless = true
+color_ramp = SubResource("Gradient_5mxy1")
+noise = SubResource("FastNoiseLite_3lhg3")
+
+[node name="Level1" instance=ExtResource("1_uwm0f")]
+music = ExtResource("2_rf6l5")
+
+[node name="TextureRect" type="TextureRect" parent="Background" index="0"]
+modulate = Color(0.0445579, 0.0445578, 0.0445578, 1)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_pjihm")
+offset_left = 880.0
+offset_top = -320.0
+offset_right = 4720.0
+offset_bottom = 1760.0
+rotation = 1.57079
+scale = Vector2(0.525143, 0.525143)
+texture = SubResource("NoiseTexture2D_oakcl")
+
+[node name="Marker2D2" type="Marker2D" parent="Balls" index="0"]
+position = Vector2(352, 1224)
+
+[node name="TileMapLayer" parent="Bricks" index="0"]
+tile_map_data = PackedByteArray("AAADACQAAAAAAAAAAAADACUAAAAAAAAAAAADACYAAAAAAAAAAAADACcAAAAAAAAAAAADACgAAAAAAAAAAAADACkAAAAAAAAAAAADACoAAAAAAAAAAAADACsAAAAAAAAAAAAFACQAAAAAAAAAAAAFACUAAAAAAAAAAAAFACYAAAAAAAAAAAAFACcAAAAAAAAAAAAFACgAAAAAAAAAAAAFACkAAAAAAAAAAAAFACoAAAAAAAAAAAAFACsAAAAAAAAAAAAHACQAAAAAAAAAAAAHACUAAAAAAAAAAAAHACYAAAAAAAAAAAAHACcAAAAAAAAAAAAHACgAAAAAAAAAAAAHACkAAAAAAAAAAAAHACoAAAAAAAAAAAAHACsAAAAAAAAAAAAJACQAAAAAAAAAAAAJACUAAAAAAAAAAAAJACYAAAAAAAAAAAAJACcAAAAAAAAAAAAJACgAAAAAAAAAAAAJACkAAAAAAAAAAAAJACoAAAAAAAAAAAAJACsAAAAAAAAAAAALACQAAAAAAAAAAAALACUAAAAAAAAAAAALACYAAAAAAAAAAAALACcAAAAAAAAAAAALACgAAAAAAAAAAAALACkAAAAAAAAAAAALACoAAAAAAAAAAAALACsAAAAAAAAAAAANACQAAAAAAAAAAAANACUAAAAAAAAAAAANACYAAAAAAAAAAAANACcAAAAAAAAAAAANACgAAAAAAAAAAAANACkAAAAAAAAAAAANACoAAAAAAAAAAAANACsAAAAAAAAAAAAPACQAAAAAAAAAAAAPACUAAAAAAAAAAAAPACYAAAAAAAAAAAAPACcAAAAAAAAAAAAPACgAAAAAAAAAAAAPACkAAAAAAAAAAAAPACoAAAAAAAAAAAAPACsAAAAAAAAAAAARACQAAAAAAAAAAAARACUAAAAAAAAAAAARACYAAAAAAAAAAAARACcAAAAAAAAAAAARACgAAAAAAAAAAAARACkAAAAAAAAAAAARACoAAAAAAAAAAAARACsAAAAAAAAAAAATACQAAAAAAAAAAAATACUAAAAAAAAAAAATACYAAAAAAAAAAAATACcAAAAAAAAAAAATACgAAAAAAAAAAAATACkAAAAAAAAAAAATACoAAAAAAAAAAAATACsAAAAAAAAAAAAVACQAAAAAAAAAAAAVACUAAAAAAAAAAAAVACYAAAAAAAAAAAAVACcAAAAAAAAAAAAVACgAAAAAAAAAAAAVACkAAAAAAAAAAAAVACoAAAAAAAAAAAAVACsAAAAAAAAAAAAXACQAAAAAAAAAAAAXACUAAAAAAAAAAAAXACYAAAAAAAAAAAAXACcAAAAAAAAAAAAXACgAAAAAAAAAAAAXACkAAAAAAAAAAAAXACoAAAAAAAAAAAAXACsAAAAAAAAAAAAZACQAAAAAAAAAAAAZACUAAAAAAAAAAAAZACYAAAAAAAAAAAAZACcAAAAAAAAAAAAZACgAAAAAAAAAAAAZACkAAAAAAAAAAAAZACoAAAAAAAAAAAAZACsAAAAAAAAAAAAbACQAAAAAAAAAAAAbACUAAAAAAAAAAAAbACYAAAAAAAAAAAAbACcAAAAAAAAAAAAbACgAAAAAAAAAAAAbACkAAAAAAAAAAAAbACoAAAAAAAAAAAAbACsAAAAAAAAAAAA=")
+
+[node name="LevelHUD" parent="." index="9"]
+visible = false

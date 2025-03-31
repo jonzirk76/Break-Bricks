@@ -1,6 +1,6 @@
 extends Node
 
-signal loot_area_entered(item_stats)
+signal loot_area_entered(item_stats, body)
 
 @onready var base_mod_scene = load("res://Modifications/BaseMod/base_mod.tscn")
 @onready var items = {
@@ -71,5 +71,5 @@ func loot_report(item_stats, body):
 func _on_bricks_brick_broken(position, brick_points) -> void:
 	drop_mod(position, brick_points)
 
-func _on_main_reset_game() -> void:
-	get_tree().call_group("pickup", "queue_free")
+#func _on_main_reset_game() -> void:
+	#get_tree().call_group("pickup", "queue_free")
